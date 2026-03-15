@@ -7,6 +7,9 @@ import {
   REVIEW_FROM_EMAIL,
 } from "./config.js";
 
+// Hardcoded fallback — ensures emails send even if reviewers.md isn't on main yet
+const NLC_FALLBACK_RECIPIENTS = ["ahkapuria@gmail.com"];
+
 /**
  * Generate a daily infographic-style email for NLC, targeting lawyers.
  * Highlights NLC services, case stats, and value props in a visual HTML format.
@@ -19,10 +22,12 @@ export const dailyInfographicEmail = schedules.task({
   id: "daily-infographic-email",
   maxDuration: 300,
   run: async () => {
-    const reviewers = await getReviewers("nlc");
+    let reviewers = await getReviewers("nlc");
+    console.log(`getReviewers("nlc") returned: ${JSON.stringify(reviewers)}`);
+
     if (reviewers.length === 0) {
-      console.log("No reviewers configured for nlc, skipping infographic email");
-      return { sent: false, reason: "no_reviewers" };
+      console.log("No reviewers from config, using fallback recipients");
+      reviewers = NLC_FALLBACK_RECIPIENTS;
     }
 
     const result = await generateAndSendInfographic.triggerAndWait({
@@ -44,21 +49,23 @@ export const generateAndSendInfographic = task({
       return { sent: false, reason: "no_recipients" };
     }
 
+    console.log(`Generating infographic for ${payload.entitySlug}, sending to: ${payload.recipients.join(", ")}`);
+
     const claude = getClaude();
 
     // Read NLC context
     let config = "";
     let brand = "";
     let goals = "";
-    try { config = await readFile(`entities/${payload.entitySlug}/config.md`); } catch {}
-    try { brand = await readFile(`entities/${payload.entitySlug}/brand.md`); } catch {}
-    try { goals = await readFile(`entities/${payload.entitySlug}/goals.md`); } catch {}
+    try { config = await readFile(`entities/${payload.entitySlug}/config.md`); } catch (e) { console.log("No config.md found, continuing"); }
+    try { brand = await readFile(`entities/${payload.entitySlug}/brand.md`); } catch (e) { console.log("No brand.md found, continuing"); }
+    try { goals = await readFile(`entities/${payload.entitySlug}/goals.md`); } catch (e) { console.log("No goals.md found, continuing"); }
 
     const today = new Date();
     const dateStr = today.toISOString().split("T")[0];
     const dayOfWeek = today.toLocaleDateString("en-US", { weekday: "long" });
 
-    // Generate the infographic content via Claude
+    console.log("Calling Claude to generate infographic content...");
     const response = await claude.messages.create({
       model: "claude-sonnet-4-20250514",
       max_tokens: 4096,
@@ -103,6 +110,7 @@ Vary the theme each day. Today focus on something fresh and specific, not generi
       ],
     });
 
+    console.log("Claude response received, parsing JSON...");
     const contentText =
       response.content[0].type === "text" ? response.content[0].text : "";
 
@@ -122,7 +130,7 @@ Vary the theme each day. Today focus on something fresh and specific, not generi
 
     const html = renderInfographicEmail(infographicData, dateStr);
 
-    // Send via Resend
+    console.log(`Sending email via Resend from ${REVIEW_FROM_EMAIL} to ${payload.recipients.join(", ")}...`);
     const resend = getResend();
     const result = await resend.emails.send({
       from: REVIEW_FROM_EMAIL,
@@ -130,6 +138,7 @@ Vary the theme each day. Today focus on something fresh and specific, not generi
       subject: `NLC Daily: ${infographicData.headline}`,
       html,
     });
+    console.log("Resend response:", JSON.stringify(result));
 
     if (result.error) {
       console.error("Resend error:", JSON.stringify(result.error));
