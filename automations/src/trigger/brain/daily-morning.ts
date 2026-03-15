@@ -13,27 +13,36 @@ import { generateAndSendInfographic } from "../outputs/daily-infographic-email.j
 export const dailyMorning = schedules.task({
   id: "daily-morning",
   run: async () => {
-    // 1. Run all daily-scheduled workflows through the orchestrator
-    const orchestratorResult = await runOrchestrator.triggerAndWait({
-      schedule: "daily",
-    });
+    // Run all three tasks in parallel so failures don't block each other
+    const [orchestratorResult, trendingResult, infographicResult] =
+      await Promise.allSettled([
+        // 1. Run all daily-scheduled workflows through the orchestrator
+        runOrchestrator.triggerAndWait({ schedule: "daily" }),
 
-    // 2. Scrape trending repos from GitHub + Trendshift
-    const trendingResult = await scrapeTrending.triggerAndWait({
-      source: "all",
-    });
+        // 2. Scrape trending repos from GitHub + Trendshift
+        scrapeTrending.triggerAndWait({ source: "all" }),
 
-    // 3. Send NLC daily infographic email to lawyers
-    const infographicResult = await generateAndSendInfographic.triggerAndWait({
-      entitySlug: "nlc",
-      recipientEmail: "ahkapuria@gmail.com",
-    });
+        // 3. Send NLC daily infographic email to lawyers
+        generateAndSendInfographic.triggerAndWait({
+          entitySlug: "nlc",
+          recipientEmail: "ahkapuria@gmail.com",
+        }),
+      ]);
 
     console.log("Daily morning run complete");
     return {
-      orchestrator: orchestratorResult,
-      trending: trendingResult,
-      infographic: infographicResult,
+      orchestrator:
+        orchestratorResult.status === "fulfilled"
+          ? orchestratorResult.value
+          : { error: String(orchestratorResult.reason) },
+      trending:
+        trendingResult.status === "fulfilled"
+          ? trendingResult.value
+          : { error: String(trendingResult.reason) },
+      infographic:
+        infographicResult.status === "fulfilled"
+          ? infographicResult.value
+          : { error: String(infographicResult.reason) },
     };
   },
 });

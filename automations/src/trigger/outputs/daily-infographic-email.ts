@@ -18,9 +18,13 @@ export const dailyInfographicEmail = schedules.task({
   id: "daily-infographic-email",
   maxDuration: 300,
   run: async () => {
+    // Try reading from reviewers.md, fall back to hardcoded recipient
+    const recipientEmail =
+      (await getRecipientEmail("nlc")) || "ahkapuria@gmail.com";
+
     const result = await generateAndSendInfographic.triggerAndWait({
       entitySlug: "nlc",
-      recipientEmail: await getRecipientEmail("nlc"),
+      recipientEmail,
     });
     return result;
   },
