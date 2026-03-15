@@ -12,10 +12,11 @@ Generate and publish daily Instagram content (images, Reels, carousels) with hyp
 - **Daily 6pm EST:** Stories + engagement content
 
 ## Daily Content Mix
-- 1 Reel (video, 15-60 seconds) — PRIMARY growth driver
-- 1 Feed post (image or carousel) — engagement + saves
-- 2-3 Stories (polls, Q&A, behind-the-scenes, swipe-ups)
-- Weekly: 1 carousel (style guides, travel roundups, beauty routines)
+- 1 Reel (video, 15-60 seconds) — PRIMARY growth driver. Mostly GRWM, lifestyle, trending audio.
+- 1 Feed post (image or carousel) — sultry editorial, mirror selfie, "candid" moment
+- 3-5 Stories (polls "which outfit?", Q&A, unfiltered moments, affiliate swipe-ups, "just woke up" selfie)
+- Weekly: 1 carousel photo dump (date night, beach day, travel, "no filter" series)
+- Content skew: sexy-aspirational, intimate, GRWM-heavy. She's the hot friend who overshares her routine.
 
 ---
 
@@ -40,12 +41,14 @@ Generate and publish daily Instagram content (images, Reels, carousels) with hyp
 - Scripts include: hook (first 1.5 sec), body, CTA, suggested trending audio
 
 ### Storyline Calendar
-Maintain a rolling storyline that builds narrative:
-- Week 1-2: "Just landed in Dubai" arc (travel content)
-- Week 3-4: "Fashion week prep" arc (style content)
-- Month 2: "Mumbai homecoming" arc (cultural connection content)
-- Ongoing: Relationship hints, friend appearances (future second AI character), life milestones
-- Seasonal: Diwali looks, Eid fashion, holiday travel, summer style
+Maintain a rolling storyline that builds narrative and keeps followers invested in "her life":
+- Week 1-2: "Dubai penthouse era" — poolside content, rooftop sunsets, getting ready for dinners, robe + room service
+- Week 3-4: "Fashion week prep" — outfit try-ons, mirror selfies, date night looks, behind-the-scenes glam
+- Month 2: "Mumbai homecoming" — traditional looks, family wedding content, lehenga reveals, cultural beauty
+- Month 3: "Bali retreat" — beach content, bikini, yoga, sunset walks, spa day GRWM
+- Ongoing: Relationship hints ("getting ready for someone special"), skincare journey, fitness progress
+- Seasonal: Diwali looks (massive engagement), summer body content, holiday glam, New Year's Eve transformation
+- The tease: Instagram shows the setup. Fanvue shows the exclusive version. Always leave them wanting more.
 
 ---
 

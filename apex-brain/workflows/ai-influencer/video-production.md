@@ -6,55 +6,95 @@ Produce hyper-realistic video Reels of the AI character that are indistinguishab
 
 ## Content Formats & Templates
 
-### Format 1: Talking Head (40% of Reels)
-The character speaks directly to camera. Hot takes, tips, reactions, storytelling.
+### Format 1: GRWM / Getting Ready (35% of Reels) — PRIMARY FORMAT
+The highest-performing content type. Intimate, personal, sexy-without-trying. She's getting ready for something and you're watching. This is the growth engine.
+
+**Subtypes:**
+- **Morning routine:** Just woke up → skincare → makeup → outfit → ready
+- **Date night prep:** Shower → hair → dress selection → jewelry → final look
+- **Event ready:** Getting glammed up for a party, fashion event, dinner
+- **Wind-down:** Coming home → taking off makeup → robe → skincare → bed
+- **Quick change:** Outfit transition (pajamas → dress in one smooth cut)
 
 **Pipeline:**
-1. Script (Claude) → 15-45 second monologue with hook
-2. Reference image (Flux/Midjourney) → character in setting, camera-facing
-3. Video generation (Higgsfield Soul ID) → animate the reference image
-4. Voice (ElevenLabs) → generate audio from script
-5. Lip sync (Kling LipSync) → sync mouth to audio
-6. Edit (CapCut) → add captions, music bed, transitions
+1. Scene outline (Claude) → 4-8 beats of the routine, each a visual moment
+2. Reference images (Flux/Midjourney) → character in each stage (towel, robe, doing makeup, trying outfits, final look)
+3. Video generation per scene:
+   - Close-ups (skincare, makeup): Higgsfield Soul ID (face consistency critical)
+   - Full body (outfit reveals, mirror checks): Kling 3.0 multi-shot
+   - Hero moment (final look walk-away): Veo 3.1
+4. Voiceover option (ElevenLabs) → casual narration ("okay so tonight I'm thinking...")
+5. Edit (CapCut) → trending music, smooth transitions, warm color grade, captions
+6. The vibe: filmed on her phone, propped up on the vanity. Feels like FaceTime with your hot friend.
 
-**Example scripts:**
-- "POV: you're the only Indian girl at Fashion Week and everyone keeps staring" [hook + story]
-- "3 outfits I'd wear to a Bollywood wedding vs what my mom wants me to wear" [relatable + cultural]
-- "I tried the viral [product] for 30 days — here's what actually happened" [review + affiliate]
+**Example Reels:**
+- Skincare routine in a towel, golden morning light, soft music, product close-ups [affiliate goldmine]
+- Trying on 3 dresses, asking the camera "this one?" with each, final reveal [engagement magnet]
+- Doing her hair in a bathroom mirror, robe slipping off one shoulder, she doesn't fix it [subtle, confident]
+- Post-shower skincare, dewy skin, no makeup, "no filter needed" caption [relatable beauty]
+- Getting ready for an Indian wedding: lehenga selection, jewelry layering, bindi application [cultural + gorgeous]
 
-### Format 2: Cinematic / Lifestyle (25% of Reels)
-No talking — just vibes. Luxury travel, getting ready, walking through cities. Music-driven.
+### Format 2: Lifestyle / Soft Thirst (25% of Reels)
+No talking, just vibes. Luxury settings, confident energy, trending music. The content that makes people follow and save.
 
 **Pipeline:**
-1. Storyboard (Higgsfield Popcorn) → 6-8 keyframes of the scene
-2. Video generation (Kling 3.0 multi-shot) → generate each scene segment
-3. Or: Veo 3.1 for hero shots with native ambient audio
-4. Edit (CapCut) → trending music, smooth transitions, color grade
-5. No lip sync needed
+1. Storyboard (Higgsfield Popcorn) → 6-8 keyframes
+2. Video generation (Kling 3.0 multi-shot or Veo 3.1)
+3. Edit (CapCut) → trending music, slow-mo moments, warm tones
+4. No lip sync needed
 
 **Example concepts:**
-- Golden hour on a Dubai rooftop, wind in hair, city below [luxury travel]
-- Getting ready for a night out — outfit selection, jewelry, mirror check [GRWM]
-- Walking through a Mumbai market in designer outfit [contrast/culture]
+- Walking through a luxury hotel lobby in a sari, slow motion, everyone looks [main character energy]
+- Poolside in a bikini, reading a book, looking up at camera and smiling [casual confidence]
+- Golden hour on a Dubai rooftop, wind in hair, city skyline below, silk dress [cinematic]
+- Laying in bed scrolling her phone, soft sheets, morning light, candid laugh [intimate]
+- Beach sunset walk, wet hair, sarong, waves hitting her feet, looking back at camera [travel thirst]
+- Room service in a robe, eating strawberries, balcony view of the city [luxury lifestyle]
 
 ### Format 3: Lip Sync to Trending Audio (20% of Reels)
-Character mouths trending sounds, songs, dialogues. Highest viral potential.
+Character mouths trending sounds, songs, dialogues. Highest viral potential. The algorithm pushes these hard.
 
 **Pipeline:**
 1. Identify trending audio (trend-scout) → top sounds this week
-2. Reference image (Flux) → character in relevant setting
-3. Video generation (Higgsfield or Kling) → animate with motion
-4. Lip sync (Kling LipSync) → sync to trending audio clip
-5. Edit (CapCut) → native feel, no over-production
+2. Match audio to a visual concept (what setting/outfit fits this sound?)
+3. Reference image (Flux) → character in relevant setting
+4. Video generation (Higgsfield or Kling) → animate with motion + expression
+5. Lip sync (Kling LipSync) → sync to trending audio clip
+6. Edit (CapCut) → native feel, no over-production
 
-**Trending audio sources:**
-- Instagram Reels trending audio page
-- TikTok trending sounds (cross 3-7 days later)
-- Bollywood movie dialogues (massive reach in South Asian audience)
-- Viral podcast/interview clips
+**Trending audio types that work for this account:**
+- Bollywood songs and dialogues (massive South Asian reach)
+- Confidence/bad-bitch energy audios ("I know I look good")
+- Relatable dating/relationship sounds
+- Cultural humor audio (desi girl problems)
+- Viral interview clips with attitude
+- Romantic/sensual song snippets
 
-### Format 4: POV / Skit (10% of Reels)
-Short storyline format. Multiple "shots" or scenarios.
+**Example Reels:**
+- Lip syncing a Bollywood dialogue while doing her eyeliner [cultural + beauty]
+- Trending "tell me you're ____ without telling me" audio, she just smiles and gestures at herself [confidence]
+- Romantic audio, she's getting ready, looking in the mirror, mouthing the lyrics [mood content]
+
+### Format 4: Talking Head / Hot Takes (15% of Reels)
+She speaks directly to camera. Personality-driven. This builds the "real person" feel.
+
+**Pipeline:**
+1. Script (Claude) → 15-45 second monologue with hook
+2. Reference image (Flux/Midjourney) → character in casual setting, camera-facing
+3. Video generation (Higgsfield Soul ID) → animate the reference image
+4. Voice (ElevenLabs) → generate audio from script
+5. Lip sync (Kling LipSync) → sync mouth to audio
+6. Edit (CapCut) → captions, music bed
+
+**Example scripts:**
+- "POV: you're the only Indian girl at Fashion Week and everyone keeps staring" [hook + story]
+- "Things Indian girls are tired of hearing about their skin" [cultural, relatable, builds loyalty]
+- "I tried the viral [product] for 30 days — here's what happened to my skin" [review + affiliate]
+- "My skincare routine costs less than your coffee habit and my skin is clear — here's the secret" [value + affiliate]
+- "Getting dressed for a date and my outfit keeps changing my personality" [funny, relatable]
+
+### Format 5: POV / Skit / Cultural Comedy (5% of Reels)
+Short storyline format. Keeps the feed diverse and shareable.
 
 **Pipeline:**
 1. Script (Claude) → 2-4 scene skit with punchline
@@ -63,18 +103,9 @@ Short storyline format. Multiple "shots" or scenarios.
 4. Edit (CapCut) → quick cuts, text overlays, sound effects
 
 **Example skits:**
-- "Types of aunties at an Indian wedding" [cultural comedy]
-- "My outfit vs what the fashion blogs recommended" [comparison]
-- "What I ordered vs what arrived" [relatable shopping content]
-
-### Format 5: GRWM / Day-in-My-Life (5% of Reels)
-Longer format (45-90 sec). Intimate, behind-the-scenes feel.
-
-**Pipeline:**
-1. Script outline (Claude) → narration flow
-2. Multiple scene generation (variety of tools based on scene type)
-3. Voiceover (ElevenLabs) → warm, conversational narration
-4. Edit (CapCut) → music, transitions, phone-camera aesthetic
+- "Getting ready with desi mom commentary" [relatable, shareable]
+- "Outfit my friend picked vs outfit I actually wore" [comparison, fashion]
+- "What I look like at home vs when I step outside" [transformation reveal]
 
 ---
 
