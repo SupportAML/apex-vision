@@ -73,7 +73,7 @@ export function ChatInterface() {
 
   const suggestions = mode === "business"
     ? ["What should NLC post on LinkedIn this week?", "Draft an investor update for A2Z Equity", "How do we get more cases for NLC?"]
-    : ["Add a new workflow for email outreach", "Give Ovi access to Club Haus metrics", "Show me the current system status"];
+    : ["Change the hero text on the Porcupine site", "Add a new workflow for email outreach", "Show me the current system status"];
 
   return (
     <Card className="flex h-[calc(100vh-8rem)] flex-col border-border/50">
@@ -81,7 +81,7 @@ export function ChatInterface() {
         {/* Mode toggle */}
         <div className="flex items-center gap-1 p-0.5 bg-muted/50 rounded-lg w-fit">
           <button
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
               mode === "business"
                 ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
@@ -91,7 +91,7 @@ export function ChatInterface() {
             <Briefcase className="h-3 w-3" /> Business
           </button>
           <button
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
               mode === "system"
                 ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
@@ -111,7 +111,7 @@ export function ChatInterface() {
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald/20 to-cyan/10 mb-4">
                   <Bot className="h-7 w-7 text-emerald/70" />
                 </div>
-                <p className="text-sm text-muted-foreground mb-6">
+                <p className="text-base text-muted-foreground mb-6">
                   {mode === "business"
                     ? "Ask about strategy, content, or operations"
                     : "Modify workflows, team access, or system config"}
@@ -121,7 +121,7 @@ export function ChatInterface() {
                     <button
                       key={s}
                       onClick={() => setInput(s)}
-                      className="text-[11px] px-3 py-1.5 rounded-full bg-muted/60 border border-border/40 text-muted-foreground hover:text-foreground hover:border-border transition-all"
+                      className="text-xs px-3.5 py-2 rounded-full bg-muted/60 border border-border/40 text-muted-foreground hover:text-foreground hover:border-border transition-all"
                     >
                       {s}
                     </button>
@@ -140,7 +140,7 @@ export function ChatInterface() {
                   </div>
                 )}
                 <div
-                  className={`rounded-xl px-3.5 py-2.5 text-sm max-w-[80%] leading-relaxed ${
+                  className={`rounded-xl px-4 py-3 text-base max-w-[80%] leading-relaxed ${
                     msg.role === "user"
                       ? "bg-foreground/10 text-foreground"
                       : "bg-muted/50 border border-border/30"
@@ -186,7 +186,7 @@ export function ChatInterface() {
                   handleSend();
                 }
               }}
-              className="min-h-[44px] max-h-[120px] text-sm resize-none bg-muted/30 border-border/50 rounded-xl pr-12"
+              className="min-h-[48px] max-h-[140px] text-base resize-none bg-muted/30 border-border/50 rounded-xl pr-12"
               rows={1}
             />
           </div>
