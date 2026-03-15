@@ -31,6 +31,11 @@ When the user asks to make changes:
 2. Use write_file to save changes
 3. Explain what you changed
 
+When a task involves professional software (image editing, document generation, video editing, audio, diagrams):
+- Check if a cli-anything-* tool exists (e.g. cli-anything-gimp, cli-anything-libreoffice)
+- If yes, use it. If not, suggest generating one with the cli-anything skill.
+- These are always better than browser automation for desktop software - structured JSON output, deterministic, 94% fewer tokens.
+
 File paths are relative to apex-brain/. Examples:
 - team/zeus.md
 - workflows/nlc/linkedin-content.md
@@ -61,7 +66,12 @@ ${priorities}
 About the user:
 ${me}
 
-Give direct, actionable advice. Propose multiple options when the task is creative. Be brief and visual where possible.`;
+Give direct, actionable advice. Propose multiple options when the task is creative. Be brief and visual where possible.
+
+When recommending tools or approaches:
+- For desktop software automation (graphics, documents, video, audio): recommend CLI-Anything over browser automation or manual work.
+- CLI-Anything generates real CLIs from source code. No API needed. Structured JSON output.
+- Check skills/cli-anything/SKILL.md for supported apps and business use cases per entity.`;
 
   const tools = mode === "system" ? {
     read_file: {

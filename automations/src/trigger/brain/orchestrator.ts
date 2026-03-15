@@ -14,6 +14,29 @@ const CONTEXT_DIR = path.join(BRAIN_ROOT, "context");
 const SKILLS_DIR = path.join(BRAIN_ROOT, "skills");
 const RUN_LOG = path.join(BRAIN_ROOT, "decisions", "run_log.jsonl");
 
+// Discover CLI-Anything generated tools on PATH (cli-anything-* commands)
+import { execSync } from "child_process";
+
+function discoverCliAnythingTools(): string[] {
+  const knownApps = [
+    "gimp", "blender", "shotcut", "audacity", "kdenlive", "obs",
+    "inkscape", "libreoffice", "drawio", "zoom", "anygen",
+  ];
+  const found: string[] = [];
+  for (const app of knownApps) {
+    const cmd = `cli-anything-${app}`;
+    try {
+      execSync(`which ${cmd}`, { stdio: "ignore" });
+      found.push(cmd);
+    } catch {
+      // not installed
+    }
+  }
+  return found;
+}
+
+const CLI_ANYTHING_TOOLS = discoverCliAnythingTools();
+
 // --- Helpers ---
 
 function loadFile(filePath: string): string {
@@ -160,7 +183,11 @@ ${skillContext}
 
 ## Rules
 - Produce the actual deliverable for each step (draft text, research findings, etc.)
-- Return valid JSON with keys: "output" (the content), "needs_approval" (bool), "confidence" (0-100)
+- Return valid JSON with keys: "output" (the content), "tool_calls" (list of tools to invoke, or empty), "needs_approval" (bool), "confidence" (0-100)
+- For tool_calls, use format: {"tool": "tool_name", "args": ["--flag", "value"]}
+- CLI-Anything tools on PATH: ${CLI_ANYTHING_TOOLS.length > 0 ? CLI_ANYTHING_TOOLS.join(", ") : "none installed yet"}
+- When a step needs image editing, document generation, video editing, or any professional software: prefer CLI-Anything tools (cli-anything-*) over browser automation. They output structured JSON via --json flag and are faster, more reliable, and use fewer tokens than UI automation.
+- If a step needs software that has no cli-anything-* tool yet, note it in the output so one can be generated.
 - If a step produces content for human review, set needs_approval: true
 - Be direct, no filler. Match the entity's brand voice.`;
 

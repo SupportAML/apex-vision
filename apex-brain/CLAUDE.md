@@ -49,6 +49,8 @@ See `skills/cli-anything/SKILL.md` for details and business use cases.
 4. Track which skill+workflow combos get the most approvals. Favor those in future runs.
 5. Weekly: check if any skills are outdated. Search for better alternatives.
 6. When proposing changes that cost money or affect external services, always ask for approval.
+7. When a workflow step needs professional software (image editing, document generation, video editing, audio processing, diagramming): check if a `cli-anything-*` tool exists on PATH first. If not, flag it so one can be generated. Never fall back to fragile browser automation when CLI-Anything can solve it.
+8. Prefer CLI-Anything tools over MCP for local software without APIs. They use ~94% fewer tokens (progressive disclosure via --help vs full schema upfront) and produce structured JSON output.
 
 ## Keeping Context Current
 - Update context/priorities.md when focus shifts

@@ -17,6 +17,12 @@ Monday, Wednesday, Friday - 11am EST
 
 ## Skills Used
 - social-media-content
+- cli-anything (for image generation/editing via GIMP or Inkscape if installed)
+
+## Tool Preference
+For the Visual step: use `cli-anything-gimp` or `cli-anything-inkscape` if available on PATH.
+These produce real graphics matching brand guidelines. Falls back to AI-generated image descriptions
+if no cli-anything image tool is installed yet.
 
 ## Output
 - Post image + caption saved to outputs/nlc/instagram/

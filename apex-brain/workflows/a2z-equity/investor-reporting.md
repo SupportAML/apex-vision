@@ -15,9 +15,15 @@ Monthly (1st of month)
 
 ## Skills Used
 - email-outreach
+- cli-anything (for PDF report generation via LibreOffice if installed)
 
 ## Tools Used
 - tools/send_email.py
+- cli-anything-libreoffice (if on PATH, for Format step)
+
+## Tool Preference
+For the Format step: use `cli-anything-libreoffice` to generate professional PDF reports
+with charts and formatting from templates. Produces real PDFs, not just markdown.
 
 ## Output
 - Report saved to outputs/a2z-equity/reports/
