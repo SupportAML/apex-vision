@@ -32,6 +32,13 @@ Workflows run on schedule via GitHub Actions or on-demand via dashboard chat.
 Tools live in `tools/`. Python scripts, zero or minimal dependencies.
 API calls, data fetching, posting, scraping. Deterministic and testable.
 
+### CLI-Anything (wrapping software that has no API)
+When a workflow needs professional software (image editors, video editors, office suites, design tools)
+that has no API, use the `cli-anything` skill to generate a CLI harness from its source code.
+Generated CLIs install to PATH as `cli-anything-*` and the orchestrator auto-discovers them.
+Use this instead of fragile browser automation or manual workarounds.
+See `skills/cli-anything/SKILL.md` for details and business use cases.
+
 ### Decision Log
 @decisions/log.md. Append-only. Log every meaningful decision with date, reasoning, context.
 
