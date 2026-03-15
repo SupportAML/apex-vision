@@ -58,18 +58,75 @@ Gap: No significant AI Indian luxury model exists. First-mover advantage.
 
 ## Tools & Stack
 
+### Image Generation
 | Function | Tool | Cost/mo |
 |----------|------|---------|
-| Hero images | Midjourney v7 ($30/mo) | $30 |
+| Hero images | Midjourney v7 | $30 |
 | Character consistency | Flux 2 Pro + LoRA training | $50-100 |
 | Image editing | Flux Kontext | Included |
-| Captions/copy | Claude (existing) | $0 |
+
+### Video Production (Full Reels Pipeline)
+| Function | Tool | Cost/mo |
+|----------|------|---------|
+| AI influencer video + Soul ID consistency | Higgsfield ($75/mo Pro) | $75 |
+| Hero cinematic clips | Kling 3.0 (multi-shot, native audio) | $30-50 |
+| Photorealistic + narrative scenes | Google Veo 3.1 (via VideoFX) | $20-50 |
+| Lip sync pass | Kling LipSync or VEED Fabric 1.0 | $15-30 |
+| AI voice (her voice) | ElevenLabs (custom voice clone) | $22 |
+| Trending audio / music | Epidemic Sound or Artlist | $15 |
+| Video editing / assembly | CapCut Pro or DaVinci Resolve | $0-10 |
+
+### Content & Distribution
+| Function | Tool | Cost/mo |
+|----------|------|---------|
+| Captions/scripts/copy | Claude (existing) | $0 |
 | Scheduling | Buffer or Later | $30 |
 | Analytics | Built into dashboard | $0 |
 | Fanvue platform | Fanvue (20% rev share) | $0 upfront |
 | Growth ads (Phase 2+) | Instagram Ads | $200-500 |
-| **Total startup** | | **~$150-200/mo** |
-| **Phase 2 total** | | **~$400-700/mo** |
+
+### Cost Summary
+| Phase | Monthly Cost |
+|-------|-------------|
+| Phase 1 (build + video) | $300-450/mo |
+| Phase 2 (monetize + ads) | $550-900/mo |
+| Phase 3 (scale) | $700-1,200/mo |
+
+### Video Production Pipeline
+
+```
+[Script + Trending Topic]
+        |
+        v
+[Storyboard] ── Higgsfield Popcorn (8-10 consistent frames)
+        |
+        v
+[Image-to-Video] ── Kling 3.0 (bulk scenes, $0.10/sec)
+        |              Veo 3.1 (hero shots with native audio)
+        |              Higgsfield (character-locked via Soul ID)
+        v
+[Voice Generation] ── ElevenLabs (custom cloned voice, consistent tone)
+        |
+        v
+[Lip Sync Pass] ── Kling LipSync or VEED Fabric
+        |              (segment into <45sec clips for accuracy)
+        v
+[Edit + Assembly] ── CapCut Pro (trending audio, transitions, captions)
+        |
+        v
+[Review Queue] ── Apex Brain dashboard (approve/reject)
+        |
+        v
+[Publish] ── Instagram API (Reel + Feed + Stories)
+              Cross-post: TikTok, YouTube Shorts
+```
+
+### Why This Multi-Tool Approach
+- Higgsfield Soul ID locks the character face across all video clips
+- Kling 3.0 is cheapest for bulk ($0.10/sec) with multi-shot character consistency
+- Veo 3.1 is best for hero content with native audio generation
+- ElevenLabs gives her a consistent, recognizable voice across all content
+- No single tool does everything well in 2026 -- the pros use 2-3 tools together
 
 ## Target Market
 
