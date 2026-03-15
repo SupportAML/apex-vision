@@ -10,20 +10,32 @@ function getOctokit(): Octokit | null {
   return octokit;
 }
 
-function getRepo() {
-  const owner = process.env.GITHUB_OWNER || "";
-  const repo = process.env.GITHUB_REPO || "";
-  return { owner, repo };
+export interface RepoTarget {
+  owner: string;
+  repo: string;
 }
+
+function getRepo(): RepoTarget {
+  return {
+    owner: process.env.GITHUB_OWNER || "",
+    repo: process.env.GITHUB_REPO || "",
+  };
+}
+
+// Known repos the dashboard can interact with
+export const REPOS: Record<string, RepoTarget> = {
+  brain: { owner: process.env.GITHUB_OWNER || "", repo: process.env.GITHUB_REPO || "" },
+  porcupine: { owner: process.env.GITHUB_OWNER || "", repo: "porcupine-website" },
+};
 
 export function isGitHubMode(): boolean {
   return !!(process.env.GITHUB_TOKEN && process.env.GITHUB_OWNER && process.env.GITHUB_REPO);
 }
 
-export async function readFile(path: string): Promise<string> {
+export async function readFile(path: string, target?: RepoTarget): Promise<string> {
   const ok = getOctokit();
   if (!ok) return "";
-  const { owner, repo } = getRepo();
+  const { owner, repo } = target || getRepo();
   try {
     const res = await ok.repos.getContent({ owner, repo, path });
     const data = res.data;
@@ -36,10 +48,10 @@ export async function readFile(path: string): Promise<string> {
   }
 }
 
-export async function listDir(path: string): Promise<string[]> {
+export async function listDir(path: string, target?: RepoTarget): Promise<string[]> {
   const ok = getOctokit();
   if (!ok) return [];
-  const { owner, repo } = getRepo();
+  const { owner, repo } = target || getRepo();
   try {
     const res = await ok.repos.getContent({ owner, repo, path });
     if (Array.isArray(res.data)) {
@@ -51,10 +63,10 @@ export async function listDir(path: string): Promise<string[]> {
   }
 }
 
-export async function listDirs(path: string): Promise<string[]> {
+export async function listDirs(path: string, target?: RepoTarget): Promise<string[]> {
   const ok = getOctokit();
   if (!ok) return [];
-  const { owner, repo } = getRepo();
+  const { owner, repo } = target || getRepo();
   try {
     const res = await ok.repos.getContent({ owner, repo, path });
     if (Array.isArray(res.data)) {
@@ -69,14 +81,14 @@ export async function listDirs(path: string): Promise<string[]> {
 export async function writeFile(
   path: string,
   content: string,
-  message: string
+  message: string,
+  target?: RepoTarget
 ): Promise<boolean> {
   const ok = getOctokit();
   if (!ok) return false;
-  const { owner, repo } = getRepo();
+  const { owner, repo } = target || getRepo();
 
   try {
-    // Get current file SHA if it exists
     let sha: string | undefined;
     try {
       const existing = await ok.repos.getContent({ owner, repo, path });
@@ -84,7 +96,7 @@ export async function writeFile(
         sha = existing.data.sha;
       }
     } catch {
-      // File doesn't exist yet, that's fine
+      // File doesn't exist yet
     }
 
     await ok.repos.createOrUpdateFileContents({

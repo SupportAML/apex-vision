@@ -244,7 +244,6 @@ export async function writeRepoFile(filePath: string, content: string, message: 
   if (gh.isGitHubMode()) {
     return gh.writeFile(`${BRAIN_PREFIX}/${filePath}`, content, message);
   }
-  // Local filesystem write
   try {
     const fullPath = path.join(BRAIN_DIR, filePath);
     const dir = path.dirname(fullPath);
@@ -261,4 +260,24 @@ export async function readRepoFile(filePath: string): Promise<string> {
     return gh.readFile(`${BRAIN_PREFIX}/${filePath}`);
   }
   return readMdLocal(path.join(BRAIN_DIR, filePath));
+}
+
+// --- Multi-repo operations (for editing external sites) ---
+
+export async function readExternalRepoFile(repoKey: string, filePath: string): Promise<string> {
+  const target = gh.REPOS[repoKey];
+  if (!target || !gh.isGitHubMode()) return "";
+  return gh.readFile(filePath, target);
+}
+
+export async function writeExternalRepoFile(repoKey: string, filePath: string, content: string, message: string): Promise<boolean> {
+  const target = gh.REPOS[repoKey];
+  if (!target || !gh.isGitHubMode()) return false;
+  return gh.writeFile(filePath, content, message, target);
+}
+
+export async function listExternalRepoDir(repoKey: string, dirPath: string): Promise<string[]> {
+  const target = gh.REPOS[repoKey];
+  if (!target || !gh.isGitHubMode()) return [];
+  return gh.listDir(dirPath, target);
 }

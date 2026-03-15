@@ -49,14 +49,14 @@ export default async function DashboardOverview() {
         <Card className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-emerald/5 to-transparent" />
           <CardHeader className="pb-2 relative">
-            <CardTitle className="text-[11px] tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
+            <CardTitle className="text-xs tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
               <Brain className="h-3.5 w-3.5 text-emerald" /> Brain Status
             </CardTitle>
           </CardHeader>
           <CardContent className="relative">
             <div className="flex items-center gap-2.5">
               <div className={`h-2.5 w-2.5 rounded-full ${brainConnected ? "bg-emerald glow-green" : "bg-rose glow-rose"}`} />
-              <p className="text-lg font-bold">{brainConnected ? "Online" : "Offline"}</p>
+              <p className="text-xl font-bold">{brainConnected ? "Online" : "Offline"}</p>
             </div>
             {!brainConnected && (
               <p className="text-xs text-muted-foreground mt-1">Add ANTHROPIC_API_KEY</p>
@@ -66,44 +66,44 @@ export default async function DashboardOverview() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-[11px] tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
+            <CardTitle className="text-xs tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
               <Zap className="h-3.5 w-3.5 text-amber" /> Entities
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{entities.length}</p>
-            <p className="text-xs text-muted-foreground">businesses tracked</p>
+            <p className="text-4xl font-bold">{entities.length}</p>
+            <p className="text-sm text-muted-foreground">businesses tracked</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-[11px] tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
+            <CardTitle className="text-xs tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
               <GitBranch className="h-3.5 w-3.5 text-violet" /> Workflows
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{allWorkflows.length}</p>
-            <p className="text-xs text-muted-foreground">automation pipelines</p>
+            <p className="text-4xl font-bold">{allWorkflows.length}</p>
+            <p className="text-sm text-muted-foreground">automation pipelines</p>
           </CardContent>
         </Card>
 
         <Card className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-amber/5 to-transparent" />
           <CardHeader className="pb-2 relative">
-            <CardTitle className="text-[11px] tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
+            <CardTitle className="text-xs tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
               <Plug className="h-3.5 w-3.5 text-cyan" /> Connectors
             </CardTitle>
           </CardHeader>
           <CardContent className="relative">
             <div className="flex items-end gap-2">
-              <p className="text-3xl font-bold">{connectedCount}</p>
-              <p className="text-lg text-muted-foreground mb-0.5">/ {connectorCount}</p>
+              <p className="text-4xl font-bold">{connectedCount}</p>
+              <p className="text-xl text-muted-foreground mb-0.5">/ {connectorCount}</p>
             </div>
             <div className="mt-2 h-1.5 rounded-full bg-muted overflow-hidden">
               <div className="h-full rounded-full bg-gradient-to-r from-emerald to-cyan transition-all duration-700" style={{ width: `${connectorPct}%` }} />
             </div>
-            <Link href="/dashboard/approvals" className="text-xs text-emerald hover:underline mt-1.5 inline-block">
+            <Link href="/dashboard/approvals" className="text-sm text-emerald hover:underline mt-1.5 inline-block">
               Set up connectors
             </Link>
           </CardContent>
@@ -111,7 +111,7 @@ export default async function DashboardOverview() {
       </div>
 
       <div>
-        <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground/60 mb-4 font-medium">Entities</h3>
+        <h3 className="text-sm tracking-[0.15em] uppercase text-muted-foreground/80 mb-4 font-semibold">Entities</h3>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 stagger-children">
           {entities.map((entity) => {
             const wfCount = allWorkflows.filter((w) => w.entity === entity.slug).length;
@@ -127,14 +127,14 @@ export default async function DashboardOverview() {
                         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted/80">
                           <Icon className="h-4 w-4 text-foreground/70" />
                         </div>
-                        <CardTitle className="text-sm font-bold">{entity.name}</CardTitle>
+                        <CardTitle className="text-base font-bold">{entity.name}</CardTitle>
                       </div>
                       <Badge variant="outline" className="text-[10px] tracking-wide uppercase border-border/50">{entity.status}</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="relative">
-                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{entity.description}</p>
-                    <div className="flex items-center gap-4 text-[11px] text-muted-foreground/70">
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{entity.description}</p>
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground/70">
                       <span className="flex items-center gap-1"><GitBranch className="h-3 w-3" /> {wfCount} workflows</span>
                       <span className="flex items-center gap-1"><Target className="h-3 w-3" /> {entity.type}</span>
                     </div>
