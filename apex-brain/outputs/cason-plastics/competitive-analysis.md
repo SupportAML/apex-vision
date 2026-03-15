@@ -197,6 +197,60 @@ The U.S. aesthetic surgery procedures market was valued at approximately $18.24 
 | Khan | Duke/Baylor/USF | Growing | Dallas | Breast, face | Medium |
 | **Cason** | **Duke/DPSI Fellowship** | **~15K** | **Grapevine** | **Face, breast, body** | **--** |
 
+### Additional Competitors of Note
+
+#### Dr. Yash Avashia -- Dr. Yash Plastic Surgery
+
+| Attribute | Detail |
+|---|---|
+| **Location** | Dallas, TX |
+| **Training** | University of Miami (undergrad + MD); **Duke University (plastic surgery residency)**; Dallas Plastic Surgery Institute (aesthetic fellowship) -- nearly identical pipeline to Cason |
+| **Key Specialties** | Rhinoplasty (primary, revision, ultrasonic, preservation, ethnic, reconstructive), facelift, blepharoplasty, breast/body |
+| **Website** | dryashplasticsurgery.com -- clean, modern, navy/white luxury aesthetic with strong CTAs |
+| **Differentiators** | Duke-trained (same as Cason); DPSI fellowship; patient-centered emotional branding ("Creating Confidence. Celebrating You."); strong rhinoplasty subcategory content |
+| **Weaknesses** | Weak testimonial integration on homepage; financing not detailed; blog section thin; limited before/after diversity on homepage |
+
+**Threat Level: VERY HIGH.** Most direct competitor. Same Duke training, same DPSI fellowship, same rhinoplasty focus, same age demographic appeal. Already established with own brand. Cason must out-content and out-testimonial Avashia aggressively. Cason's 15K IG following and 25+ publications (vs. fewer for Avashia) are key differentiators.
+
+#### Dr. C. Spencer Cochran -- Dallas Rhinoplasty Center
+
+| Attribute | Detail |
+|---|---|
+| **Location** | Dallas, TX |
+| **Training** | ENT board-certified; protege of Jack Gunter (legendary rhinoplasty surgeon) |
+| **Key Specialties** | 100% rhinoplasty and revision rhinoplasty -- practices nothing else |
+| **Website** | rhinoplasty-usa.com -- domain name is SEO gold |
+| **Differentiators** | Pure rhinoplasty focus creates instant credibility; D Magazine "Best Doctors"; Texas Monthly "Super Doctor" |
+| **Weaknesses** | ENT board-certified, not ABPS (less comprehensive training); narrow positioning limits total addressable market |
+
+**Threat Level: HIGH for rhinoplasty.** Cochran is the rhinoplasty-only specialist. Counter-position: Cason has ABPS board certification (full plastic surgery training), Duke pedigree, and ability to combine rhinoplasty with other facial procedures for comprehensive rejuvenation.
+
+#### Dr. Jon Kurkjian -- JK Plastic Surgery (Fort Worth)
+
+| Attribute | Detail |
+|---|---|
+| **Location** | Fort Worth, TX |
+| **Training** | Section editor for Aesthetic Surgery Journal rhinoplasty |
+| **Key Specialties** | Rhinoplasty and revision rhinoplasty (academic specialty), full range |
+| **Website** | jkplasticsurgery.com -- sophisticated earth-tone design, VECTRA 3D imaging |
+| **Differentiators** | Journal editorial credentials; Fort Worth location; multi-location support |
+| **Weaknesses** | Fort Worth positioning limits Dallas reach; design-heavy, content-light |
+
+**Threat Level: HIGH for rhinoplasty.** Direct rhinoplasty competitor with editorial credentials. Fort Worth base creates geographic overlap in mid-cities.
+
+---
+
+### DFW Pricing Landscape (2025-2026)
+
+| Procedure | Market Range | Premium Tier |
+|---|---|---|
+| Breast Augmentation | $6,000 - $10,000 | $8,000 - $12,000 |
+| Rhinoplasty (Primary) | $8,200 - $12,300 | $12,000 - $15,000 |
+| Revision Rhinoplasty | $12,000 - $22,000 | $15,000 - $22,000+ |
+| Mommy Makeover | $12,000 - $25,000 | $18,000 - $35,000 |
+| Tummy Tuck | $8,000 - $15,000 | $12,000 - $18,000 |
+| Facelift | $10,000 - $20,000 | $15,000 - $25,000 |
+
 ---
 
 ## 3. Cason's Competitive Advantages
