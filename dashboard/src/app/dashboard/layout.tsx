@@ -1,13 +1,15 @@
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import { getEntities } from "@/lib/data";
+import { getEntitiesAsync } from "@/lib/data";
 
-export default function DashboardLayout({
+export const dynamic = "force-dynamic";
+
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const entities = getEntities();
+  const entities = await getEntitiesAsync();
 
   return (
     <SidebarProvider>

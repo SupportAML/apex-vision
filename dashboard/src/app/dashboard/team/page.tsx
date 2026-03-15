@@ -1,6 +1,8 @@
-import { getTeam } from "@/lib/data";
+import { getTeamAsync } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
+export const dynamic = "force-dynamic";
 
 const avatarColors = [
   "bg-emerald/15 text-emerald",
@@ -12,8 +14,8 @@ const avatarColors = [
   "bg-cyan/15 text-cyan",
 ];
 
-export default function TeamPage() {
-  const team = getTeam();
+export default async function TeamPage() {
+  const team = await getTeamAsync();
 
   return (
     <div className="space-y-6 animate-fade-up">
@@ -28,12 +30,7 @@ export default function TeamPage() {
               <div className="flex items-center gap-3">
                 <Avatar className="h-10 w-10 rounded-xl">
                   <AvatarFallback className={`rounded-xl text-xs font-bold ${avatarColors[i % avatarColors.length]}`}>
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .toUpperCase()
-                      .slice(0, 2)}
+                    {member.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)}
                   </AvatarFallback>
                 </Avatar>
                 <div>

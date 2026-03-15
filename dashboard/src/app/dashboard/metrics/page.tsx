@@ -1,8 +1,10 @@
-import { getEntities } from "@/lib/data";
+import { getEntitiesAsync } from "@/lib/data";
 import { MetricsCards } from "@/components/metrics-cards";
 
-export default function MetricsPage() {
-  const entities = getEntities();
+export const dynamic = "force-dynamic";
+
+export default async function MetricsPage() {
+  const entities = await getEntitiesAsync();
 
   return (
     <div className="space-y-8 animate-fade-up">

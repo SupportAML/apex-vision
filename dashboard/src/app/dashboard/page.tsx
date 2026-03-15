@@ -1,8 +1,10 @@
-import { getEntities, getWorkflows } from "@/lib/data";
+import { getEntitiesAsync, getWorkflowsAsync } from "@/lib/data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GitBranch, Target, Plug, Brain, Zap, Clock, Scale, Briefcase, PiggyBank, Scissors, Wrench } from "lucide-react";
 import Link from "next/link";
+
+export const dynamic = "force-dynamic";
 
 const entityIcons: Record<string, typeof Briefcase> = {
   nlc: Scale,
@@ -20,9 +22,9 @@ const entityAccents: Record<string, string> = {
   "titan-renovations": "from-rose/20 to-amber/10",
 };
 
-export default function DashboardOverview() {
-  const entities = getEntities();
-  const allWorkflows = getWorkflows();
+export default async function DashboardOverview() {
+  const entities = await getEntitiesAsync();
+  const allWorkflows = await getWorkflowsAsync();
 
   const brainConnected = !!process.env.ANTHROPIC_API_KEY;
   const connectorCount = 11;
@@ -43,7 +45,6 @@ export default function DashboardOverview() {
 
   return (
     <div className="space-y-8 animate-fade-up">
-      {/* Hero stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 stagger-children">
         <Card className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-emerald/5 to-transparent" />
@@ -100,10 +101,7 @@ export default function DashboardOverview() {
               <p className="text-lg text-muted-foreground mb-0.5">/ {connectorCount}</p>
             </div>
             <div className="mt-2 h-1.5 rounded-full bg-muted overflow-hidden">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-emerald to-cyan transition-all duration-700"
-                style={{ width: `${connectorPct}%` }}
-              />
+              <div className="h-full rounded-full bg-gradient-to-r from-emerald to-cyan transition-all duration-700" style={{ width: `${connectorPct}%` }} />
             </div>
             <Link href="/dashboard/approvals" className="text-xs text-emerald hover:underline mt-1.5 inline-block">
               Set up connectors
@@ -112,7 +110,6 @@ export default function DashboardOverview() {
         </Card>
       </div>
 
-      {/* Entity grid */}
       <div>
         <h3 className="text-xs tracking-[0.15em] uppercase text-muted-foreground/60 mb-4 font-medium">Entities</h3>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 stagger-children">
@@ -132,20 +129,14 @@ export default function DashboardOverview() {
                         </div>
                         <CardTitle className="text-sm font-bold">{entity.name}</CardTitle>
                       </div>
-                      <Badge variant="outline" className="text-[10px] tracking-wide uppercase border-border/50">
-                        {entity.status}
-                      </Badge>
+                      <Badge variant="outline" className="text-[10px] tracking-wide uppercase border-border/50">{entity.status}</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="relative">
                     <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{entity.description}</p>
                     <div className="flex items-center gap-4 text-[11px] text-muted-foreground/70">
-                      <span className="flex items-center gap-1">
-                        <GitBranch className="h-3 w-3" /> {wfCount} workflows
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Target className="h-3 w-3" /> {entity.type}
-                      </span>
+                      <span className="flex items-center gap-1"><GitBranch className="h-3 w-3" /> {wfCount} workflows</span>
+                      <span className="flex items-center gap-1"><Target className="h-3 w-3" /> {entity.type}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -155,12 +146,10 @@ export default function DashboardOverview() {
         </div>
       </div>
 
-      {/* Intervention Timeline Placeholder */}
       <Card className="border-dashed border-border/40">
         <CardHeader>
           <CardTitle className="text-xs tracking-[0.15em] uppercase text-muted-foreground/60 flex items-center gap-2">
-            <Clock className="h-3.5 w-3.5" />
-            Intervention Timeline
+            <Clock className="h-3.5 w-3.5" /> Intervention Timeline
           </CardTitle>
         </CardHeader>
         <CardContent>

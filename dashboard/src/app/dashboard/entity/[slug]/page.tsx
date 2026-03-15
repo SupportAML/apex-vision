@@ -1,10 +1,12 @@
-import { getEntities, getWorkflows, getEntityGoals } from "@/lib/data";
+import { getEntitiesAsync, getWorkflowsAsync, getEntityGoalsAsync } from "@/lib/data";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { WorkflowList } from "@/components/workflow-pipeline";
 import { MetricsCards, GoalsView } from "@/components/metrics-cards";
 import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
 import { Scale, Briefcase, PiggyBank, Scissors, Wrench } from "lucide-react";
+
+export const dynamic = "force-dynamic";
 
 const entityIcons: Record<string, typeof Briefcase> = {
   nlc: Scale,
@@ -20,13 +22,13 @@ export default async function EntityPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const entities = getEntities();
+  const entities = await getEntitiesAsync();
   const entity = entities.find((e) => e.slug === slug);
 
   if (!entity) return notFound();
 
-  const workflows = getWorkflows(slug);
-  const goals = getEntityGoals(slug);
+  const workflows = await getWorkflowsAsync(slug);
+  const goals = await getEntityGoalsAsync(slug);
   const Icon = entityIcons[slug] || Briefcase;
 
   return (
