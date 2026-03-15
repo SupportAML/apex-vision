@@ -3,8 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cason Plastic Surgery — Dr. Roger Cason, MD | Dallas, TX</title>
-    <meta name="description" content="Board-certified plastic surgeon Dr. Roger Cason offers rhinoplasty, facelift, mommy makeover, and body contouring in Dallas, TX. Duke-trained with 25+ published studies.">
+    <title>Cason Plastic Surgery | Dr. Roger Cason, MD | Board-Certified Plastic Surgeon Dallas, TX</title>
+    <meta name="description" content="Board-certified plastic surgeon Dr. Roger Cason offers rhinoplasty, facelift, mommy makeover, and body contouring in Dallas, TX. Duke-trained with 25+ published studies. Schedule your consultation today.">
+    <meta name="keywords" content="plastic surgeon Dallas, rhinoplasty Dallas TX, facelift Dallas, mommy makeover Dallas, board certified plastic surgeon Dallas, best plastic surgeon Dallas TX, tummy tuck Dallas, breast augmentation Dallas">
+    <link rel="canonical" href="https://casonplasticsurgery.com">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Cason Plastic Surgery | Dr. Roger Cason, MD | Dallas, TX">
+    <meta property="og:description" content="Duke-trained, board-certified plastic surgeon specializing in rhinoplasty, facelift, and body contouring in Dallas, TX.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://casonplasticsurgery.com">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cason Plastic Surgery | Dr. Roger Cason, MD">
+    <meta name="twitter:description" content="Duke-trained, board-certified plastic surgeon in Dallas, TX. Rhinoplasty, facelift, mommy makeover, and more.">
+
+    <!-- JSON-LD Structured Data: Physician -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Physician",
+        "name": "Dr. Roger Cason, MD",
+        "description": "Board-certified plastic surgeon specializing in rhinoplasty, facelift, mommy makeover, and body contouring in Dallas, TX. Duke-trained with 25+ published studies.",
+        "medicalSpecialty": "PlasticSurgery",
+        "alumniOf": [
+            { "@type": "CollegeOrUniversity", "name": "University of Oklahoma College of Medicine" },
+            { "@type": "CollegeOrUniversity", "name": "Duke University Medical Center" }
+        ],
+        "knowsAbout": ["Rhinoplasty", "Revision Rhinoplasty", "Facelift", "Mommy Makeover", "Tummy Tuck", "Breast Augmentation", "Blepharoplasty", "Body Contouring"],
+        "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Board Certification",
+            "recognizedBy": { "@type": "Organization", "name": "American Board of Plastic Surgery" }
+        },
+        "address": { "@type": "PostalAddress", "addressLocality": "Dallas", "addressRegion": "TX", "addressCountry": "US" },
+        "sameAs": ["https://www.instagram.com/drrogercason/"]
+    }
+    </script>
+    <!-- JSON-LD Structured Data: MedicalBusiness -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalBusiness",
+        "name": "Cason Plastic Surgery",
+        "description": "Boutique plastic surgery practice in Dallas, TX led by Duke-trained, board-certified surgeon Dr. Roger Cason.",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dallas", "addressRegion": "TX", "addressCountry": "US" },
+        "openingHoursSpecification": [
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }
+        ]
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +104,86 @@
         .trust-card:hover {
             border-bottom-color: #C9A96E;
         }
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 44, 44, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background: #FAF7F2;
+            border-radius: 12px;
+            max-width: 560px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 40px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.open .modal-content {
+            transform: translateY(0);
+        }
+        /* FAQ accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding-top: 12px;
+        }
+        .faq-item .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+        /* Credentials bar */
+        .credentials-scroll {
+            animation: scroll-left 20s linear infinite;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* Journey step connector */
+        .journey-connector {
+            position: absolute;
+            top: 24px;
+            left: calc(50% + 24px);
+            right: calc(-50% + 24px);
+            height: 2px;
+            background: #C9A96E;
+            opacity: 0.3;
+        }
     </style>
 </head>
 <body class="bg-cream text-charcoal font-sans antialiased">
@@ -69,6 +200,7 @@
                 <a href="#services" class="text-warm-gray hover:text-charcoal transition-colors">Services</a>
                 <a href="#credentials" class="text-warm-gray hover:text-charcoal transition-colors">Credentials</a>
                 <a href="#testimonials" class="text-warm-gray hover:text-charcoal transition-colors">Testimonials</a>
+                <a href="#faq" class="text-warm-gray hover:text-charcoal transition-colors">FAQ</a>
                 <a href="#contact" class="bg-gold text-white px-5 py-2.5 rounded hover:bg-gold-light transition-colors">Book Consultation</a>
             </div>
             <!-- Mobile menu button -->
@@ -84,6 +216,7 @@
             <a href="#services" class="block text-warm-gray hover:text-charcoal text-sm font-medium">Services</a>
             <a href="#credentials" class="block text-warm-gray hover:text-charcoal text-sm font-medium">Credentials</a>
             <a href="#testimonials" class="block text-warm-gray hover:text-charcoal text-sm font-medium">Testimonials</a>
+            <a href="#faq" class="block text-warm-gray hover:text-charcoal text-sm font-medium">FAQ</a>
             <a href="#contact" class="block bg-gold text-white px-5 py-2.5 rounded text-center text-sm font-medium">Book Consultation</a>
         </div>
     </nav>
@@ -116,8 +249,52 @@
         </div>
     </section>
 
+    <!-- Credentials Trust Bar -->
+    <section class="bg-white border-b border-warm-gray-light/20 py-6 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-cream flex items-center justify-center">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342"/></svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-warm-gray uppercase tracking-wider">Residency</p>
+                        <p class="text-sm font-medium text-charcoal">Duke University Medical Center</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-cream flex items-center justify-center">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-warm-gray uppercase tracking-wider">Board Certified</p>
+                        <p class="text-sm font-medium text-charcoal">American Board of Plastic Surgery</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-cream flex items-center justify-center">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-warm-gray uppercase tracking-wider">Research</p>
+                        <p class="text-sm font-medium text-charcoal">25+ Published Studies</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-cream flex items-center justify-center">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-xs text-warm-gray uppercase tracking-wider">Featured On</p>
+                        <p class="text-sm font-medium text-charcoal">The Plastic Surgery Channel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About -->
-    <section id="about" class="py-24 bg-white">
+    <section id="about" class="py-24 bg-white reveal">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <!-- Photo placeholder -->
@@ -161,7 +338,7 @@
     </section>
 
     <!-- Services -->
-    <section id="services" class="py-24 bg-cream">
+    <section id="services" class="py-24 bg-cream reveal">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <div class="gold-line mx-auto mb-6"></div>
@@ -234,8 +411,93 @@
         </div>
     </section>
 
+    <!-- What Sets Us Apart - Competitive Positioning -->
+    <section class="py-24 bg-white reveal">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="gold-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl font-medium mb-4">What Sets Dr. Cason Apart</h2>
+                <p class="text-warm-gray max-w-2xl mx-auto">In a market full of capable surgeons, Dr. Cason brings a rare combination of elite training, academic rigor, and a surgeon-first approach to every patient.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-cream rounded-lg p-10 reveal reveal-delay-1">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342"/></svg>
+                    </div>
+                    <h3 class="font-serif text-xl font-medium mb-3">Duke-Trained Precision</h3>
+                    <p class="text-warm-gray text-sm leading-relaxed">Six years at one of the nation's top academic medical centers. Not just aesthetic training, but the full spectrum: microsurgery, craniofacial, hand, and reconstructive surgery. That depth of training shows in every result.</p>
+                </div>
+                <div class="bg-cream rounded-lg p-10 reveal reveal-delay-2">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+                    </div>
+                    <h3 class="font-serif text-xl font-medium mb-3">Research-Driven Practice</h3>
+                    <p class="text-warm-gray text-sm leading-relaxed">With 25+ peer-reviewed publications and textbook chapters, Dr. Cason doesn't just follow best practices. He helps define them. Your procedure is informed by the latest evidence, not yesterday's techniques.</p>
+                </div>
+                <div class="bg-cream rounded-lg p-10 reveal reveal-delay-3">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                    </div>
+                    <h3 class="font-serif text-xl font-medium mb-3">Surgeon-Led, Start to Finish</h3>
+                    <p class="text-warm-gray text-sm leading-relaxed">Your consultation is with Dr. Cason. Your surgery is performed by Dr. Cason. Your follow-ups are with Dr. Cason. No hand-offs to physician assistants. Your surgeon is your surgeon throughout.</p>
+                </div>
+                <div class="bg-cream rounded-lg p-10 reveal reveal-delay-4">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+                        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.048.58.024 1.194-.14 1.743"/></svg>
+                    </div>
+                    <h3 class="font-serif text-xl font-medium mb-3">Reconstructive Foundation</h3>
+                    <p class="text-warm-gray text-sm leading-relaxed">Training in complex reconstruction (rebuilding what's broken) gives Dr. Cason a dimensional understanding of anatomy that purely aesthetic-trained surgeons don't have. He handles cases others can't take on, including revision surgery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Your Journey - Consultation Process -->
+    <section class="py-24 bg-cream reveal">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="gold-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl font-medium mb-4">Your Journey</h2>
+                <p class="text-warm-gray max-w-xl mx-auto">From first conversation to final result, every step is thoughtful, unhurried, and led by Dr. Cason personally.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center relative reveal reveal-delay-1">
+                    <div class="hidden md:block journey-connector"></div>
+                    <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white font-serif font-bold">1</span>
+                    </div>
+                    <h3 class="font-serif text-lg font-medium mb-3">Consultation</h3>
+                    <p class="text-warm-gray text-sm leading-relaxed">An unhurried, one-on-one conversation with Dr. Cason. Discuss your goals, ask every question, and understand what's truly possible for your anatomy.</p>
+                </div>
+                <div class="text-center relative reveal reveal-delay-2">
+                    <div class="hidden md:block journey-connector"></div>
+                    <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white font-serif font-bold">2</span>
+                    </div>
+                    <h3 class="font-serif text-lg font-medium mb-3">Your Plan</h3>
+                    <p class="text-warm-gray text-sm leading-relaxed">A personalized surgical plan built around your unique anatomy and goals. No cookie-cutter approaches. Every detail is tailored to you.</p>
+                </div>
+                <div class="text-center relative reveal reveal-delay-3">
+                    <div class="hidden md:block journey-connector"></div>
+                    <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white font-serif font-bold">3</span>
+                    </div>
+                    <h3 class="font-serif text-lg font-medium mb-3">Your Procedure</h3>
+                    <p class="text-warm-gray text-sm leading-relaxed">Meticulous surgical technique in an accredited facility. Safety-first, with the precision that comes from Duke-level training and thousands of cases.</p>
+                </div>
+                <div class="text-center reveal reveal-delay-4">
+                    <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white font-serif font-bold">4</span>
+                    </div>
+                    <h3 class="font-serif text-lg font-medium mb-3">Aftercare</h3>
+                    <p class="text-warm-gray text-sm leading-relaxed">Surgeon-led follow-ups at every milestone. Dr. Cason personally monitors your healing and is available when you have questions. Never handed off.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Credentials / Why Dr. Cason -->
-    <section id="credentials" class="py-24 bg-white">
+    <section id="credentials" class="py-24 bg-white reveal">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <div class="gold-line mx-auto mb-6"></div>
@@ -267,7 +529,7 @@
     </section>
 
     <!-- Testimonials -->
-    <section id="testimonials" class="py-24 bg-charcoal">
+    <section id="testimonials" class="py-24 bg-charcoal reveal">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <div class="gold-line mx-auto mb-6"></div>
@@ -312,8 +574,119 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-cream reveal">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="gold-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl font-medium mb-4">Common Questions</h2>
+                <p class="text-warm-gray">Answers to what patients ask most. For anything else, your consultation is the place.</p>
+            </div>
+            <div class="space-y-4" id="faq-list">
+                <div class="faq-item bg-white rounded-lg px-8 py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-charcoal pr-4">Am I a good candidate for plastic surgery?</h3>
+                        <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer text-warm-gray text-sm leading-relaxed">
+                        Good candidates are generally in good health, at a stable weight, have realistic expectations, and are motivated by personal goals rather than external pressure. The best way to find out is a consultation where Dr. Cason can evaluate your anatomy and discuss what's achievable.
+                    </div>
+                </div>
+                <div class="faq-item bg-white rounded-lg px-8 py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-charcoal pr-4">What happens during a consultation?</h3>
+                        <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer text-warm-gray text-sm leading-relaxed">
+                        You'll meet one-on-one with Dr. Cason to discuss your goals, medical history, and concerns. He'll perform an examination, explain your options, discuss realistic outcomes, and answer every question. Consultations are thorough and unhurried. There is never pressure to book.
+                    </div>
+                </div>
+                <div class="faq-item bg-white rounded-lg px-8 py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-charcoal pr-4">Is Dr. Cason board certified?</h3>
+                        <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer text-warm-gray text-sm leading-relaxed">
+                        Yes. Dr. Cason is certified by the American Board of Plastic Surgery, the only board recognized by the American Board of Medical Specialties for plastic surgery. This requires completing an accredited residency, passing rigorous written and oral exams, and maintaining ongoing education.
+                    </div>
+                </div>
+                <div class="faq-item bg-white rounded-lg px-8 py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-charcoal pr-4">Will my results look natural?</h3>
+                        <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer text-warm-gray text-sm leading-relaxed">
+                        Natural results are the standard, not the exception. Dr. Cason's philosophy centers on enhancing your existing features and restoring proportion rather than creating a "done" look. The best compliment his patients receive is "you look great" without anyone guessing why.
+                    </div>
+                </div>
+                <div class="faq-item bg-white rounded-lg px-8 py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-charcoal pr-4">How long is recovery?</h3>
+                        <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer text-warm-gray text-sm leading-relaxed">
+                        Recovery varies by procedure. Most patients return to desk work within 1-2 weeks and resume exercise by 4-6 weeks. Final results typically emerge over 3-6 months as swelling resolves and tissues settle. Dr. Cason provides detailed recovery timelines during your consultation.
+                    </div>
+                </div>
+                <div class="faq-item bg-white rounded-lg px-8 py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-charcoal pr-4">What financing options are available?</h3>
+                        <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer text-warm-gray text-sm leading-relaxed">
+                        We believe your decision should be based on what's right for you, not financial constraints. We offer financing through CareCredit and Prosper Healthcare Lending, with plans that fit most budgets. Our team can walk you through options during or after your consultation.
+                    </div>
+                </div>
+                <div class="faq-item bg-white rounded-lg px-8 py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-charcoal pr-4">What if I need a revision?</h3>
+                        <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer text-warm-gray text-sm leading-relaxed">
+                        Revision surgery is a core part of Dr. Cason's expertise. His reconstructive training at Duke gives him the technical skill to manage complex anatomy and scar tissue. If you've had a previous procedure elsewhere and aren't satisfied, Dr. Cason regularly takes on revision cases that other surgeons won't.
+                    </div>
+                </div>
+                <div class="faq-item bg-white rounded-lg px-8 py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-charcoal pr-4">How do I prepare for surgery?</h3>
+                        <span class="faq-icon text-gold text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer text-warm-gray text-sm leading-relaxed">
+                        You'll receive detailed pre-operative instructions tailored to your procedure. Generally: stop smoking 4-6 weeks before, avoid blood-thinning medications, arrange for someone to drive you home, and prepare your recovery space. Dr. Cason's team walks you through everything step by step.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Social Proof -->
+    <section class="py-24 bg-white reveal">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="gold-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl font-medium mb-4">Follow the Journey</h2>
+                <p class="text-warm-gray mb-2">Behind-the-scenes, patient education, and results on Instagram.</p>
+                <p class="text-gold font-medium">@drrogercason &middot; 15K+ followers</p>
+            </div>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-3 mb-10">
+                <div class="aspect-square bg-cream rounded-lg flex items-center justify-center border border-warm-gray-light/20"><svg class="w-8 h-8 text-warm-gray-light opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"/></svg></div>
+                <div class="aspect-square bg-cream rounded-lg flex items-center justify-center border border-warm-gray-light/20"><svg class="w-8 h-8 text-warm-gray-light opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"/></svg></div>
+                <div class="aspect-square bg-cream rounded-lg flex items-center justify-center border border-warm-gray-light/20"><svg class="w-8 h-8 text-warm-gray-light opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"/></svg></div>
+                <div class="aspect-square bg-cream rounded-lg flex items-center justify-center border border-warm-gray-light/20"><svg class="w-8 h-8 text-warm-gray-light opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"/></svg></div>
+                <div class="aspect-square bg-cream rounded-lg flex items-center justify-center border border-warm-gray-light/20"><svg class="w-8 h-8 text-warm-gray-light opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"/></svg></div>
+                <div class="aspect-square bg-cream rounded-lg flex items-center justify-center border border-warm-gray-light/20"><svg class="w-8 h-8 text-warm-gray-light opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"/></svg></div>
+            </div>
+            <div class="text-center">
+                <a href="https://www.instagram.com/drrogercason/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-charcoal text-white px-8 py-4 rounded font-medium text-sm tracking-wide hover:bg-charcoal/90 transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    Follow @drrogercason
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
-    <section id="contact" class="py-24 bg-cream">
+    <section id="contact" class="py-24 bg-cream reveal">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16">
                 <div>
@@ -421,26 +794,87 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-charcoal py-12 border-t border-warm-gray/10">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+    <!-- Procedure Detail Modal -->
+    <div class="modal-overlay" id="procedure-modal" onclick="if(event.target===this)closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-start mb-6">
                 <div>
-                    <p class="font-serif text-lg text-white">
+                    <div class="gold-line mb-4"></div>
+                    <h3 class="font-serif text-2xl font-medium" id="modal-title">Procedure</h3>
+                </div>
+                <button onclick="closeModal()" class="text-warm-gray hover:text-charcoal transition-colors p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <p class="text-warm-gray leading-relaxed mb-6" id="modal-description"></p>
+            <div class="bg-cream rounded-lg p-6 mb-6">
+                <h4 class="font-medium text-sm uppercase tracking-wide text-charcoal mb-3">Recovery Timeline</h4>
+                <p class="text-warm-gray text-sm leading-relaxed" id="modal-recovery"></p>
+            </div>
+            <a href="#contact" onclick="closeModal()" class="block w-full bg-gold text-white py-4 rounded font-medium text-sm tracking-wide hover:bg-gold-light transition-colors text-center">
+                Book a Consultation
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal py-16 border-t border-warm-gray/10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <p class="font-serif text-lg text-white mb-2">
                         <span>CASON</span>
                         <span class="text-gold ml-1">PLASTIC SURGERY</span>
                     </p>
-                    <p class="text-warm-gray text-xs mt-1">Board-Certified Plastic Surgeon &middot; Dallas, TX</p>
+                    <p class="text-warm-gray text-xs mb-6">Board-Certified Plastic Surgeon<br>Dallas, TX</p>
+                    <div class="flex items-center gap-4">
+                        <a href="https://www.instagram.com/drrogercason/" target="_blank" rel="noopener" class="w-9 h-9 bg-warm-gray/10 rounded-full flex items-center justify-center text-warm-gray hover:text-gold hover:bg-warm-gray/20 transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-warm-gray/10 rounded-full flex items-center justify-center text-warm-gray hover:text-gold hover:bg-warm-gray/20 transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="flex items-center gap-6 text-warm-gray text-sm">
-                    <a href="#about" class="hover:text-gold transition-colors">About</a>
-                    <a href="#services" class="hover:text-gold transition-colors">Services</a>
-                    <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
-                    <a href="https://www.instagram.com/drrogercason/" target="_blank" class="hover:text-gold transition-colors">Instagram</a>
+                <div>
+                    <h4 class="text-white font-medium text-sm uppercase tracking-wide mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-warm-gray text-sm hover:text-gold transition-colors">About Dr. Cason</a></li>
+                        <li><a href="#services" class="text-warm-gray text-sm hover:text-gold transition-colors">Procedures</a></li>
+                        <li><a href="#credentials" class="text-warm-gray text-sm hover:text-gold transition-colors">Credentials</a></li>
+                        <li><a href="#faq" class="text-warm-gray text-sm hover:text-gold transition-colors">FAQ</a></li>
+                        <li><a href="#contact" class="text-warm-gray text-sm hover:text-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium text-sm uppercase tracking-wide mb-4">Procedures</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-warm-gray text-sm hover:text-gold transition-colors">Rhinoplasty</a></li>
+                        <li><a href="#services" class="text-warm-gray text-sm hover:text-gold transition-colors">Facelift</a></li>
+                        <li><a href="#services" class="text-warm-gray text-sm hover:text-gold transition-colors">Mommy Makeover</a></li>
+                        <li><a href="#services" class="text-warm-gray text-sm hover:text-gold transition-colors">Tummy Tuck</a></li>
+                        <li><a href="#services" class="text-warm-gray text-sm hover:text-gold transition-colors">Breast Augmentation</a></li>
+                        <li><a href="#services" class="text-warm-gray text-sm hover:text-gold transition-colors">Blepharoplasty</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium text-sm uppercase tracking-wide mb-4">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="text-warm-gray text-sm">Dallas, TX</li>
+                        <li class="text-warm-gray text-sm">Mon-Fri: 9am - 5pm</li>
+                        <li class="text-warm-gray text-sm">Sat: By appointment</li>
+                        <li><a href="#contact" class="text-gold text-sm hover:text-gold-light transition-colors">Book a Consultation</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-warm-gray/10 mt-8 pt-8 text-center">
-                <p class="text-warm-gray text-xs">&copy; 2026 Cason Plastic Surgery. All rights reserved. This is a demo website.</p>
+            <div class="border-t border-warm-gray/10 pt-8">
+                <p class="text-warm-gray/60 text-xs leading-relaxed mb-4">
+                    <strong class="text-warm-gray/80">Medical Disclaimer:</strong> The information on this website is for educational purposes only and does not constitute medical advice. Individual results vary. All surgical procedures carry risks. A personal consultation with Dr. Cason is required to determine candidacy and discuss potential outcomes, risks, and alternatives.
+                </p>
+                <p class="text-warm-gray/60 text-xs leading-relaxed mb-4">
+                    Patient privacy is protected under HIPAA. All before-and-after photographs shown are published with written patient consent.
+                </p>
+                <p class="text-warm-gray/40 text-xs">&copy; 2026 Cason Plastic Surgery. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -452,20 +886,92 @@
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        // Close mobile menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
         });
-        // Navbar background on scroll
+
+        // Navbar shadow on scroll
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-sm');
-            } else {
-                nav.classList.remove('shadow-sm');
+            nav.classList.toggle('shadow-sm', window.scrollY > 50);
+        });
+
+        // Scroll reveal animations
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // FAQ accordion
+        function toggleFaq(item) {
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        }
+
+        // Procedure modals
+        const procedures = {
+            rhinoplasty: {
+                title: 'Rhinoplasty',
+                description: 'Rhinoplasty reshapes the nose to enhance facial harmony while preserving your natural character. Dr. Cason specializes in both primary rhinoplasty and complex revision cases, drawing on his reconstructive training at Duke to handle anatomy that other surgeons find challenging. Every rhinoplasty is planned around your unique facial proportions, breathing function, and aesthetic goals.',
+                recovery: 'Splint removal at 1 week. Most swelling resolves by 2-3 weeks, with return to work in 7-10 days. Exercise resumes at 4-6 weeks. Final result refines over 12 months as residual swelling resolves.'
+            },
+            facelift: {
+                title: 'Facelift',
+                description: 'A facelift restores natural youthfulness by addressing sagging skin, deep folds, and lost volume in the lower face and neck. Dr. Cason uses SMAS techniques that lift the deeper tissue layer for results that look refreshed and natural, never pulled or "done." Each facelift is customized to address your specific concerns, whether that is the jawline, neck, or midface.',
+                recovery: 'Drains removed in 1-2 days. Swelling and bruising peak at day 3-5 and resolve significantly by 2-3 weeks. Return to work in 2 weeks. Final result at 3-6 months as tissue settles.'
+            },
+            mommy: {
+                title: 'Mommy Makeover',
+                description: 'A mommy makeover is a customized combination of procedures designed to restore your pre-pregnancy body. Typically combining a tummy tuck with breast surgery (lift, augmentation, or both), the procedures are performed in a single session for one recovery period. Dr. Cason tailors every mommy makeover to your specific changes and goals.',
+                recovery: 'Most patients take 2 weeks off work. Activity restrictions for 4-6 weeks. Core exercises resume at 8 weeks. Full recovery and final results by 3-6 months. Best timing: 6+ months post-pregnancy, stable weight.'
+            },
+            tummy: {
+                title: 'Tummy Tuck',
+                description: 'Abdominoplasty flattens and contours the abdomen by removing excess skin, tightening separated abdominal muscles, and repositioning the belly button. Dr. Cason places incisions meticulously within your natural bikini line so scars are easily concealed. For patients with significant weight loss or post-pregnancy changes, this procedure restores core structure and silhouette.',
+                recovery: 'Drains for 1-2 weeks. Return to desk work in 2 weeks. Gradual return to exercise at 6 weeks. Scar fades significantly by 6-12 months. Compression garment worn for 4-6 weeks.'
+            },
+            breast: {
+                title: 'Breast Augmentation',
+                description: 'Breast augmentation is about more than just size. Dr. Cason considers shape, projection, width, height, and how implants sit on your specific frame to create results that look and feel natural. Using the latest implant options and placement techniques, every augmentation is planned to complement your proportions, not just increase volume.',
+                recovery: 'Return to desk work in 3-5 days. Avoid upper body exercise for 4-6 weeks. Sports bra worn for 6 weeks. Implants settle into final position over 3-6 months ("drop and fluff").'
+            },
+            bleph: {
+                title: 'Blepharoplasty',
+                description: 'Eyelid surgery rejuvenates tired, heavy-looking eyes by removing excess skin and repositioning or removing fat deposits. Whether addressing drooping upper lids that impair vision or puffy lower lids that create a fatigued appearance, blepharoplasty is one of the most impactful facial procedures with one of the shortest recovery periods.',
+                recovery: 'Sutures removed at 5-7 days. Bruising fades in 10-14 days. Most patients return to work in 1 week. Minimal discomfort. Final results visible within 1-2 months.'
             }
+        };
+
+        // Add click handlers to service cards
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            const keys = ['rhinoplasty', 'facelift', 'mommy', 'tummy', 'breast', 'bleph'];
+            card.addEventListener('click', () => openModal(keys[index]));
+        });
+
+        function openModal(key) {
+            const p = procedures[key];
+            if (!p) return;
+            document.getElementById('modal-title').textContent = p.title;
+            document.getElementById('modal-description').textContent = p.description;
+            document.getElementById('modal-recovery').textContent = p.recovery;
+            document.getElementById('procedure-modal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('procedure-modal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
         });
     </script>
 </body>
