@@ -2,6 +2,7 @@ import { schedules } from "@trigger.dev/sdk";
 import { runOrchestrator } from "./orchestrator.js";
 import { scrapeTrending } from "./scrape-trending.js";
 import { generateAndSendInfographic } from "../outputs/daily-infographic-email.js";
+import { getReviewers } from "../outputs/config.js";
 
 /**
  * Daily morning run — 8am ET (12:00 UTC).
@@ -23,10 +24,14 @@ export const dailyMorning = schedules.task({
         scrapeTrending.triggerAndWait({ source: "all" }),
 
         // 3. Send NLC daily infographic email to lawyers
-        generateAndSendInfographic.triggerAndWait({
-          entitySlug: "nlc",
-          recipientEmail: "ahkapuria@gmail.com",
-        }),
+        getReviewers("nlc").then((reviewers) =>
+          reviewers.length > 0
+            ? generateAndSendInfographic.triggerAndWait({
+                entitySlug: "nlc",
+                recipients: reviewers,
+              })
+            : { sent: false, reason: "no_reviewers" }
+        ),
       ]);
 
     console.log("Daily morning run complete");

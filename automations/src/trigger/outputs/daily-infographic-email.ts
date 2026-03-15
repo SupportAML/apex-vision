@@ -2,6 +2,7 @@ import { schedules, task } from "@trigger.dev/sdk";
 import {
   getClaude,
   getResend,
+  getReviewers,
   readFile,
   REVIEW_FROM_EMAIL,
 } from "./config.js";
@@ -18,40 +19,29 @@ export const dailyInfographicEmail = schedules.task({
   id: "daily-infographic-email",
   maxDuration: 300,
   run: async () => {
-    // Try reading from reviewers.md, fall back to hardcoded recipient
-    const recipientEmail =
-      (await getRecipientEmail("nlc")) || "ahkapuria@gmail.com";
+    const reviewers = await getReviewers("nlc");
+    if (reviewers.length === 0) {
+      console.log("No reviewers configured for nlc, skipping infographic email");
+      return { sent: false, reason: "no_reviewers" };
+    }
 
     const result = await generateAndSendInfographic.triggerAndWait({
       entitySlug: "nlc",
-      recipientEmail,
+      recipients: reviewers,
     });
     return result;
   },
 });
-
-async function getRecipientEmail(entitySlug: string): Promise<string> {
-  try {
-    const content = await readFile(`entities/${entitySlug}/reviewers.md`);
-    const emails = content
-      .split("\n")
-      .filter((line) => line.match(/^-\s+\S+@\S+/))
-      .map((line) => line.replace(/^-\s+/, "").trim());
-    return emails[0] || "";
-  } catch {
-    return "";
-  }
-}
 
 /**
  * Core task: generate infographic content via Claude, render as HTML email, send via Resend.
  */
 export const generateAndSendInfographic = task({
   id: "generate-and-send-infographic",
-  run: async (payload: { entitySlug: string; recipientEmail: string }) => {
-    if (!payload.recipientEmail) {
-      console.log("No recipient email found");
-      return { sent: false, reason: "no_recipient" };
+  run: async (payload: { entitySlug: string; recipients: string[] }) => {
+    if (!payload.recipients || payload.recipients.length === 0) {
+      console.log("No recipients provided");
+      return { sent: false, reason: "no_recipients" };
     }
 
     const claude = getClaude();
@@ -136,7 +126,7 @@ Vary the theme each day. Today focus on something fresh and specific, not generi
     const resend = getResend();
     const result = await resend.emails.send({
       from: REVIEW_FROM_EMAIL,
-      to: [payload.recipientEmail],
+      to: payload.recipients,
       subject: `NLC Daily: ${infographicData.headline}`,
       html,
     });
@@ -147,12 +137,12 @@ Vary the theme each day. Today focus on something fresh and specific, not generi
     }
 
     console.log(
-      `Sent NLC infographic email to ${payload.recipientEmail}: ${infographicData.headline}`
+      `Sent NLC infographic email to ${payload.recipients.join(", ")}: ${infographicData.headline}`
     );
     return {
       sent: true,
       emailId: result.data?.id,
-      recipient: payload.recipientEmail,
+      recipients: payload.recipients,
       headline: infographicData.headline,
       date: dateStr,
     };
