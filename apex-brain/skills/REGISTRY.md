@@ -10,3 +10,5 @@
 | browser-automation | ComposioHQ/awesome-claude-skills (Playwright) | 2026-03-14 | latest |
 | frontend-design | superpowers plugin | 2026-03-14 | latest |
 | google-ads | alirezarezvani/claude-skills | 2026-03-14 | latest |
+| autoresearch | uditgoenka/autoresearch (Karpathy-inspired) | 2026-03-15 | v1.0.3 |
+| google-workspace-cli (93 skills) | googleworkspace/cli | 2026-03-15 | latest |
