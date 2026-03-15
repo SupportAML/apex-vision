@@ -1,0 +1,31 @@
+{
+  "workflow": "linkedin-content",
+  "entity": "nlc",
+  "steps": [
+    {
+      "step": "Research",
+      "status": "dry_run"
+    },
+    {
+      "step": "Draft",
+      "status": "dry_run"
+    },
+    {
+      "step": "Visual",
+      "status": "dry_run"
+    },
+    {
+      "step": "Review",
+      "status": "dry_run"
+    },
+    {
+      "step": "Post",
+      "status": "dry_run"
+    },
+    {
+      "step": "Track",
+      "status": "dry_run"
+    }
+  ],
+  "timestamp": "2026-03-15T03:44:51.566984"
+}

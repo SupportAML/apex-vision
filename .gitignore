@@ -1,0 +1,17 @@
+# Secrets
+.env
+.env.local
+*.local.md
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Build
+dashboard/.next/
+dashboard/out/
+
+# OS
+.DS_Store
+Thumbs.db

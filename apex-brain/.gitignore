@@ -1,0 +1,8 @@
+CLAUDE.local.md
+.env
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+dashboard/.next/
+dashboard/node_modules/

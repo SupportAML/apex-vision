@@ -1,0 +1,3 @@
+{"workflow": "linkedin-content", "entity": "nlc", "steps": [{"step": "Research", "status": "dry_run"}, {"step": "Draft", "status": "dry_run"}, {"step": "Visual", "status": "dry_run"}, {"step": "Review", "status": "dry_run"}, {"step": "Post", "status": "dry_run"}, {"step": "Track", "status": "dry_run"}], "timestamp": "2026-03-15T03:42:38.904772"}
+{"workflow": "linkedin-content", "entity": "nlc", "timestamp": "2026-03-15T03:44:51.566984", "steps_completed": 0, "steps_total": 6, "needs_approval": false}
+{"workflow": "linkedin-content", "entity": "nlc", "timestamp": "2026-03-15T03:50:19.352365", "steps_completed": 6, "steps_total": 6, "needs_approval": true}

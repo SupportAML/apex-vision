@@ -1,0 +1,41 @@
+name: Weekly Monday Run
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'  # 10am ET Monday
+  workflow_dispatch:
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run weekly workflows
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          GOOGLE_ANALYTICS_TOKEN: ${{ secrets.GOOGLE_ANALYTICS_TOKEN }}
+        run: python tools/orchestrator.py --schedule weekly
+
+      - name: Fetch analytics rollup
+        env:
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          GOOGLE_ANALYTICS_TOKEN: ${{ secrets.GOOGLE_ANALYTICS_TOKEN }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        run: python tools/fetch_analytics.py --source all --days 7 > outputs/weekly-metrics.json
+
+      - name: Upload outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-outputs-${{ github.run_number }}
+          path: outputs/
+          retention-days: 90

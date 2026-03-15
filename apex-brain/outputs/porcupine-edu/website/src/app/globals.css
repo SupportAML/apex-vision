@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --color-bark: #2C1810;
+  --color-bark-light: #4A2E20;
+  --color-forest: #1B4332;
+  --color-forest-light: #2D6A4F;
+  --color-moss: #588157;
+  --color-lichen: #A3B18A;
+  --color-cream: #FEFAE0;
+  --color-sand: #DDA15E;
+  --color-amber: #BC6C25;
+  --color-parchment: #FAF7F0;
+  --color-warm-gray: #6B705C;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--color-parchment);
+  --color-foreground: var(--color-bark);
+}
+
+body {
+  background: var(--color-parchment);
+  color: var(--color-bark);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-sand);
+  color: var(--color-bark);
+}
+
+/* Grain overlay for texture */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 9999;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Editorial horizontal rule */
+.editorial-rule {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-bark), transparent);
+  opacity: 0.2;
+}
+
+/* Hero parallax image */
+.hero-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-container img {
+  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.hero-image-container:hover img {
+  transform: scale(1.03);
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.4s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(44, 24, 16, 0.12);
+}
