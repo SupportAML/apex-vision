@@ -1,17 +1,48 @@
 # Apex Vision
 
-## Git Workflow (READ THIS FIRST)
+## Environment Check (SILENT — runs at session start)
 
-Direct pushes to `main` are blocked by the environment proxy. You will get a 403 error if you try. Do not waste time debugging branch protection rules or rulesets -- they are not the issue.
+Run this silently at the start of every session. Do not print output unless Doppler is missing:
+```bash
+if ! doppler secrets get ANTHROPIC_API_KEY --plain 2>/dev/null 1>/dev/null; then
+  echo "⚠️ Doppler not connected. Setup required before any testing or API calls."
+  echo ""
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "Mac setup:"
+    echo "  brew install dopplerhq/cli/doppler"
+    echo "  doppler login"
+    echo "  doppler setup   # pick apex-vision → dev"
+  elif [[ "$OSTYPE" == "msys"* ]] || [[ "$OSTYPE" == "cygwin"* ]] || command -v winget &>/dev/null; then
+    echo "Windows setup:"
+    echo "  winget install doppler.cli"
+    echo "  doppler login"
+    echo "  doppler setup   # pick apex-vision → dev"
+  else
+    echo "Cloud session — DOPPLER_TOKEN may be missing or expired."
+    echo "Go to Claude Code → Settings → Cloud Environment → add DOPPLER_TOKEN=your_service_token"
+  fi
+  echo ""
+  echo "Code-only changes are fine without Doppler. Testing/running requires it."
+fi
+```
 
-### How to push your changes
+## Git Workflow
 
-1. **Always work on your assigned `claude/` branch.** Your session will have a branch like `claude/some-task-XXXXX`. Develop and commit there.
-2. **Push to your `claude/` branch.** Use `git push -u origin claude/your-branch-name`. This will succeed.
-3. **Do NOT push to `main` directly.** It will fail with a 403 every time. Do not retry, do not investigate settings -- it is blocked by design.
-4. **Changes auto-merge into `main`.** A GitHub Action (`.github/workflows/auto-merge-claude.yml`) automatically creates a PR and merges it when you push to any `claude/` branch. No manual step needed.
+### VS Code with Claude Code extension (normal local development)
 
-### If you hit a 403 on push
+Commit directly to `main` and push normally:
+```bash
+git add <files>
+git commit -m "your message"
+git push origin main
+```
 
-- If you're pushing to `main`: stop. Switch to your `claude/` branch and push there instead.
-- If you're pushing to a `claude/` branch and it fails: retry up to 4 times with exponential backoff (2s, 4s, 8s, 16s) as it may be a network issue.
+### Claude Code Desktop (cloud/remote sessions only)
+
+Direct pushes to `main` are blocked by the environment proxy in these sessions. Do not waste time debugging — it is blocked by design.
+
+1. Work on your assigned `claude/` branch (e.g. `claude/some-task-XXXXX`).
+2. Push to that branch: `git push -u origin claude/your-branch-name`
+3. A GitHub Action (`.github/workflows/auto-merge-claude.yml`) will auto-create a PR and merge it into `main`.
+
+If a `claude/` push fails with 403: retry up to 4 times with exponential backoff (2s, 4s, 8s, 16s).
