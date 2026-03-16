@@ -1,4 +1,4 @@
-# AI Influencer (Project Priya)
+# AI Influencer (Project Farah)
 
 **Type:** AI-generated Instagram influencer + subscription content business
 **Description:** Luxury lifestyle AI model with Indian beauty aesthetic, monetized through brand deals, affiliate marketing, and Fanvue subscription funnel
@@ -6,7 +6,7 @@
 
 ## The Persona
 
-**Name:** TBD (working name: "Priya" — to be finalized with brand research)
+**Name:** Farah
 **Look:** Indian beauty — deep brown eyes, dark hair, warm skin tone, striking features
 **Aesthetic:** Luxury lifestyle — high fashion, travel, aspirational living, editorial quality
 **Personality:** Confident, worldly, elegant but approachable. Mix of Bollywood glamour and international fashion. Loves art, travel, and beauty. Shares lifestyle tips and fashion picks. Not salesy, not influencer-cringe.
@@ -52,7 +52,7 @@
 | Lil Miquela | 2.5M | Fashion/music | $100K+ | Mixed/ambiguous |
 | Aitana Lopez | 386K | Fitness/lifestyle | $3-10K | Spanish |
 | Emily Pellegrini | 280K | Lifestyle | $40K+ | Italian |
-| **Project Priya** | **0** | **Luxury/Indian** | **$0** | **Indian** |
+| **Farah** | **0** | **Luxury/Indian** | **$0** | **Indian** |
 
 Gap: No significant AI Indian luxury model exists. First-mover advantage.
 
@@ -81,7 +81,7 @@ Gap: No significant AI Indian luxury model exists. First-mover advantage.
 |----------|------|---------|
 | Captions/scripts/copy | Claude (existing) | $0 |
 | Scheduling | Buffer or Later | $30 |
-| Analytics | Built into dashboard | $0 |
+| Analytics | TikVib (Instagram/TikTok tracking) + dashboard | $0 |
 | Fanvue platform | Fanvue (20% rev share) | $0 upfront |
 | Growth ads (Phase 2+) | Instagram Ads | $200-500 |
 

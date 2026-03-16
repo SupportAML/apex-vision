@@ -3,7 +3,7 @@
 **Status:** Research complete, automation scaffolded, NOT yet live
 **Created:** 2026-03-16
 **Branch:** `claude/ai-content-monetization-research-bCUmy`
-**Entity:** ai-influencer (Project Priya)
+**Entity:** ai-influencer (Project Farah)
 
 ---
 

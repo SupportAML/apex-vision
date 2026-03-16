@@ -24,7 +24,8 @@
 - Begin planning second AI persona
 
 ## Ongoing
-- Track engagement rate weekly (target: 5%+ — AI influencers average 5.9%)
+- Track engagement rate weekly via TikVib (target: 5%+ — AI influencers average 5.9%)
+- Monitor follower growth curve and competitor benchmarks weekly on TikVib
 - Log all brand deal inquiries and rates for pricing optimization
 - Update character style guide based on top-performing content
 - System self-improves based on approval/rejection patterns
