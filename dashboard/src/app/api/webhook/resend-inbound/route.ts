@@ -16,7 +16,11 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     // Resend inbound webhook payload structure
-    const { from, subject, text, headers } = body.data || body;
+    const { from, subject, text, html, headers } = body.data || body;
+
+    // Gmail often sends HTML-only replies with no plain text part.
+    // Fall back to stripping tags from the HTML body if text is empty.
+    const plainText = text?.trim() || stripHtmlTags(html || "");
 
     // Extract the review ID we encoded in the outbound email headers
     const reviewId =
@@ -51,7 +55,7 @@ export async function POST(req: NextRequest) {
       await tasks.trigger("process-portfolio-feedback", {
         from: fromStr,
         subject: subject || "",
-        text: text || "",
+        text: plainText,
       });
       console.log(`Triggered portfolio feedback processing for: ${subject}`);
     } else {
@@ -59,7 +63,7 @@ export async function POST(req: NextRequest) {
       await tasks.trigger("process-email-reply", {
         from: fromStr,
         subject: subject || "",
-        text: text || "",
+        text: plainText,
         reviewId,
       });
       console.log(`Triggered review processing for: ${subject}`);
@@ -72,6 +76,19 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+/** Strip HTML tags to get plain text from an HTML email body. */
+function stripHtmlTags(html: string): string {
+  return html
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 }
 
 /**
