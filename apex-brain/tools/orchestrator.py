@@ -44,6 +44,7 @@ TOOL_MAP = {
     "send_email": "tools/send_email.py",
     "deploy_to_vercel": "tools/deploy_to_vercel.py",
     "browser_agent": "tools/browser_agent.py",
+    "generate_status_report": "tools/generate_status_report.py",
 }
 
 
