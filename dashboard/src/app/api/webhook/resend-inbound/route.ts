@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     // Decode the reviewId to determine routing
     let reviewMeta: Record<string, string> = {};
     try {
-      reviewMeta = JSON.parse(Buffer.from(reviewId, "base64url").toString("utf-8"));
+      reviewMeta = JSON.parse(Buffer.from(reviewId ?? "", "base64url").toString("utf-8"));
     } catch {
       // Not JSON — treat as legacy review ID
     }
