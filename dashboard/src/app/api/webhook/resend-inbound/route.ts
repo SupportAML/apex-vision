@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
       feedbackText = stripHtmlTags(htmlNoQuotes);
     } else {
       // Strip >-quoted lines from plain text replies
-      feedbackText = feedbackText.split("\n").filter((l) => !l.trimStart().startsWith(">")).join("\n").trim();
+      feedbackText = feedbackText.split("\n").filter((l: string) => !l.trimStart().startsWith(">")).join("\n").trim();
     }
 
     console.log("DEBUG", JSON.stringify({
