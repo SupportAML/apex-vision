@@ -1,5 +1,3 @@
-The feedback is empty, so no changes are needed. Here is the file unchanged:
-
 /**
  * Portfolio Summary Content
  *

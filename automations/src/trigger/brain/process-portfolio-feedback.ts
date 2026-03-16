@@ -15,6 +15,13 @@ export const processPortfolioFeedback = task({
 
     console.log(`Processing portfolio feedback from ${from}`);
 
+    // Skip if feedback is empty / not actionable
+    const feedbackText = text.trim();
+    if (!feedbackText || feedbackText.length < 5) {
+      console.log("Empty feedback, skipping update");
+      return { updated: false, reason: "empty feedback" };
+    }
+
     // 1. Read the current content file from GitHub
     const octokit = getOctokit();
     const { data: fileData } = await octokit.repos.getContent({
@@ -61,12 +68,18 @@ Instructions:
       ],
     });
 
-    const updatedContent =
+    let updatedContent =
       response.content[0].type === "text" ? response.content[0].text.trim() : null;
 
     if (!updatedContent) {
       throw new Error("Claude returned no content");
     }
+
+    // Strip any preamble before the TypeScript code starts
+    const codeStart = updatedContent.indexOf("/**");
+    if (codeStart > 0) updatedContent = updatedContent.slice(codeStart);
+    // Strip markdown fences if Claude wrapped in ```
+    updatedContent = updatedContent.replace(/^```(?:typescript)?\n?/m, "").replace(/\n?```$/m, "").trim();
 
     // 3. Commit the updated file back to GitHub
     await octokit.repos.createOrUpdateFileContents({
