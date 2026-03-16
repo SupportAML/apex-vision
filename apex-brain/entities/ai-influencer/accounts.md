@@ -4,7 +4,7 @@
 - **Username:** @farah_xo.xo.xo.xo
 - **Email:** xoxofarah68@gmail.com
 - **Account type:** Creator (Professional)
-- **Facebook Page:** Farah XOxO
+- **Facebook Page:** Farah XOxO (ID: `1081400131716586`)
 
 ## Gmail
 - **Address:** xoxofarah68@gmail.com
