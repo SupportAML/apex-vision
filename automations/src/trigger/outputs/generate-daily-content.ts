@@ -69,6 +69,39 @@ export const generateDailyContent = schedules.task({
         }
       } catch {}
 
+      // Load learnings from reviewer feedback
+      let globalLearnings = "";
+      try {
+        globalLearnings = await readFile(
+          "skills/social-media-content/learnings.md"
+        );
+      } catch {}
+      let entityLearnings = "";
+      try {
+        entityLearnings = await readFile(
+          `entities/${entity.name}/learnings.md`
+        );
+      } catch {}
+
+      // Load approved examples for this entity
+      let approvedExamples = "";
+      try {
+        const exampleFiles = await listDir(
+          "skills/social-media-content/examples"
+        );
+        const entityExamples = exampleFiles.filter((f) =>
+          f.name.startsWith(entity.name)
+        );
+        for (const ex of entityExamples.slice(-2)) {
+          try {
+            const c = await readFile(
+              `skills/social-media-content/examples/${ex.name}`
+            );
+            approvedExamples += `\n--- ${ex.name} ---\n${c.slice(0, 800)}\n`;
+          } catch {}
+        }
+      } catch {}
+
       const today = new Date();
       const dateStr = today.toISOString().split("T")[0];
       const dayOfWeek = today.toLocaleDateString("en-US", {
@@ -94,6 +127,10 @@ ${goals}
 
 ## Existing Content (for reference — don't repeat these)
 ${existingContent || "None yet"}
+
+${globalLearnings ? `## Learnings from Reviewer Feedback (APPLY THESE)\n${globalLearnings}\n` : ""}
+${entityLearnings ? `## ${entity.name}-Specific Learnings\n${entityLearnings}\n` : ""}
+${approvedExamples ? `## Approved Examples (match this quality and style)\n${approvedExamples}\n` : ""}
 
 ## Today
 ${dayOfWeek}, ${dateStr}
