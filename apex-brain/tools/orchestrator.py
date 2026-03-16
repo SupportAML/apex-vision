@@ -44,7 +44,28 @@ TOOL_MAP = {
     "send_email": "tools/send_email.py",
     "deploy_to_vercel": "tools/deploy_to_vercel.py",
     "browser_agent": "tools/browser_agent.py",
+    "generate_status_report": "tools/generate_status_report.py",
 }
+
+
+def discover_cli_anything_tools() -> dict:
+    """Find CLI-Anything generated tools installed on PATH (cli-anything-* commands)."""
+    import shutil
+    tools = {}
+    # Check common cli-anything tool names from known supported apps
+    known_apps = [
+        "gimp", "blender", "shotcut", "audacity", "kdenlive", "obs",
+        "inkscape", "libreoffice", "drawio", "zoom", "anygen",
+    ]
+    for app in known_apps:
+        cmd_name = f"cli-anything-{app}"
+        if shutil.which(cmd_name):
+            tools[cmd_name] = cmd_name  # PATH-based, no script path needed
+    return tools
+
+
+# Merge any installed CLI-Anything tools into the tool map
+CLI_ANYTHING_TOOLS = discover_cli_anything_tools()
 
 
 def load_file(path: Path) -> str:
@@ -104,17 +125,26 @@ def call_claude(system_prompt: str, user_prompt: str, api_key: str) -> dict:
 
 
 def run_tool(tool_name: str, args: list, dry_run: bool = False) -> dict:
-    """Execute a Python tool script and capture JSON output."""
-    script = REPO_ROOT / TOOL_MAP.get(tool_name, "")
-    if not script.exists():
+    """Execute a tool script or CLI-Anything command and capture JSON output."""
+    import shutil
+
+    # Check built-in tools first, then CLI-Anything tools on PATH
+    if tool_name in TOOL_MAP:
+        script = REPO_ROOT / TOOL_MAP[tool_name]
+        if not script.exists():
+            return {"status": "error", "message": f"Tool not found: {tool_name}"}
+        cmd = [sys.executable, str(script)] + args
+    elif tool_name in CLI_ANYTHING_TOOLS or shutil.which(tool_name):
+        # CLI-Anything generated tool on PATH - run directly with --json for structured output
+        cmd = [tool_name, "--json"] + args
+    else:
         return {"status": "error", "message": f"Tool not found: {tool_name}"}
 
-    cmd = [sys.executable, str(script)] + args
     if dry_run:
         cmd.append("--dry-run")
 
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
         try:
             return json.loads(result.stdout)
         except json.JSONDecodeError:
@@ -185,6 +215,9 @@ Your job is to execute one step of a workflow and produce concrete output.
 - Produce the actual deliverable for each step (draft text, research findings, etc.)
 - Return valid JSON with keys: "output" (the content), "tool_calls" (list of tools to invoke, or empty), "needs_approval" (bool), "confidence" (0-100)
 - For tool_calls, use format: {{"tool": "tool_name", "args": ["--flag", "value"]}}
+- Built-in tools: {', '.join(TOOL_MAP.keys())}
+- CLI-Anything tools (software CLIs on PATH): {', '.join(CLI_ANYTHING_TOOLS.keys()) if CLI_ANYTHING_TOOLS else 'none installed yet'}
+- CLI-Anything tools accept --json for structured output. Use them for image editing, document generation, video editing, etc.
 - If a step produces content for human review, set needs_approval: true
 - Be direct, no filler. Match the entity's brand voice."""
 

@@ -37,6 +37,20 @@ export const reviseContent = task({
       brandGuide = await readFile(`entities/${payload.entitySlug}/brand.md`);
     } catch {}
 
+    // Load learnings so revisions also benefit from past feedback
+    let globalLearnings = "";
+    try {
+      globalLearnings = await readFile(
+        "skills/social-media-content/learnings.md"
+      );
+    } catch {}
+    let entityLearnings = "";
+    try {
+      entityLearnings = await readFile(
+        `entities/${payload.entitySlug}/learnings.md`
+      );
+    } catch {}
+
     const response = await claude.messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 4096,
@@ -57,11 +71,16 @@ ${originalContent}
 ## Reviewer Feedback
 ${payload.feedback}
 
+## Past Learnings (apply these rules too)
+${globalLearnings || "None yet"}
+${entityLearnings || ""}
+
 ## Instructions
 - Apply the feedback precisely
 - Keep the same markdown format
 - Don't add meta-commentary, just output the revised content
-- Maintain brand voice and tone from the brand guide`,
+- Maintain brand voice and tone from the brand guide
+- Apply any relevant past learnings listed above`,
         },
       ],
     });

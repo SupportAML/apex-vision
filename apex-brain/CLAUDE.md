@@ -32,6 +32,13 @@ Workflows run on schedule via GitHub Actions or on-demand via dashboard chat.
 Tools live in `tools/`. Python scripts, zero or minimal dependencies.
 API calls, data fetching, posting, scraping. Deterministic and testable.
 
+### CLI-Anything (wrapping software that has no API)
+When a workflow needs professional software (image editors, video editors, office suites, design tools)
+that has no API, use the `cli-anything` skill to generate a CLI harness from its source code.
+Generated CLIs install to PATH as `cli-anything-*` and the orchestrator auto-discovers them.
+Use this instead of fragile browser automation or manual workarounds.
+See `skills/cli-anything/SKILL.md` for details and business use cases.
+
 ### Decision Log
 @decisions/log.md. Append-only. Log every meaningful decision with date, reasoning, context.
 
@@ -42,6 +49,8 @@ API calls, data fetching, posting, scraping. Deterministic and testable.
 4. Track which skill+workflow combos get the most approvals. Favor those in future runs.
 5. Weekly: check if any skills are outdated. Search for better alternatives.
 6. When proposing changes that cost money or affect external services, always ask for approval.
+7. When a workflow step needs professional software (image editing, document generation, video editing, audio processing, diagramming): check if a `cli-anything-*` tool exists on PATH first. If not, flag it so one can be generated. Never fall back to fragile browser automation when CLI-Anything can solve it.
+8. Prefer CLI-Anything tools over MCP for local software without APIs. They use ~94% fewer tokens (progressive disclosure via --help vs full schema upfront) and produce structured JSON output.
 
 ## Keeping Context Current
 - Update context/priorities.md when focus shifts
@@ -65,5 +74,5 @@ API calls, data fetching, posting, scraping. Deterministic and testable.
 - CRM lead qualification and automated follow-up emails
 - Competitor analysis for legal consulting market
 - Investment opportunity scouting for A2Z Equity
-- Invoice management (WaveApps integration or replacement)
+- Invoice management (WaveApps integration or replacement) — DONE: accounting-connector skill built with Wave provider + Zoho/QBO abstraction. See skills/accounting-connector/SKILL.md
 - Scheduling and onboarding docs for Club Haus

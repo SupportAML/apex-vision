@@ -18,9 +18,15 @@ Daily, 9am EST
 ## Skills Used
 - social-media-content
 - seo-content
+- cli-anything (for infographic/visual creation via GIMP or Inkscape if installed)
 
 ## Tools Used
 - tools/post_to_linkedin.py
+- cli-anything-gimp or cli-anything-inkscape (if on PATH, for Visual step)
+
+## Tool Preference
+For the Visual step: prefer `cli-anything-inkscape` for vector infographics or
+`cli-anything-gimp` for raster graphics if available. Structured JSON output, no browser needed.
 
 ## Output
 - Post text + image saved to outputs/nlc/linkedin/
