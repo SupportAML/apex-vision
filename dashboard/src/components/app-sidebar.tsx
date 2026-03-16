@@ -25,12 +25,14 @@ import {
   Scissors,
   PiggyBank,
   Wrench,
+  TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const mainNav = [
   { title: "Overview", href: "/dashboard", icon: LayoutDashboard },
+  { title: "Markets", href: "/dashboard/markets", icon: TrendingUp },
   { title: "Approvals", href: "/dashboard/approvals", icon: CheckSquare },
   { title: "Chat", href: "/dashboard/chat", icon: MessageSquare },
   { title: "Metrics", href: "/dashboard/metrics", icon: BarChart3 },
