@@ -16,3 +16,9 @@ dashboard/out/
 .DS_Store
 Thumbs.db
 .vercel
+
+# Browser automation logs
+.playwright-mcp/
+
+# Firebase
+firebase-debug.log
