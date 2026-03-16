@@ -1,4 +1,5 @@
 # CRM Lead Management - NLC
+schedule: daily
 
 ## Objective
 Qualify inbound leads, send relevant docs, and move them through the pipeline with minimal human input.

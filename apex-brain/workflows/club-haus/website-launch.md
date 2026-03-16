@@ -1,4 +1,5 @@
 # Website Launch - Club Haus
+schedule: one-time
 
 ## Objective
 Build and deploy a website for Club Haus Barber Parlor with booking integration.

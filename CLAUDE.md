@@ -43,6 +43,26 @@ Direct pushes to `main` are blocked by the environment proxy in these sessions. 
 
 1. Work on your assigned `claude/` branch (e.g. `claude/some-task-XXXXX`).
 2. Push to that branch: `git push -u origin claude/your-branch-name`
-3. A GitHub Action (`.github/workflows/auto-merge-claude.yml`) will auto-create a PR and merge it into `main`.
+3. The `.github/workflows/auto-merge-claude-branches.yml` action will auto-merge the branch into `main`.
 
 If a `claude/` push fails with 403: retry up to 4 times with exponential backoff (2s, 4s, 8s, 16s).
+
+## Automations (Trigger.dev)
+
+All scheduled and event-driven automation runs through **Trigger.dev** — not GitHub Actions, not cron, not local scripts.
+
+### Scheduled tasks
+
+| Task ID | Schedule | Purpose |
+|---|---|---|
+| `daily-morning` | Daily 7:30am ET (`30 11 * * *`) | Runs all `schedule: daily` workflows + 1-day analytics |
+| `weekly-monday` | Monday 10am ET (`0 14 * * 1`) | Runs all `schedule: weekly` workflows + 7-day analytics |
+| `monthly-first` | 1st of month 9am ET (`0 13 1 * *`) | Runs all `schedule: monthly` workflows + 30-day analytics |
+
+After deploying (`npx trigger.dev@latest deploy` from `automations/`), register each schedule in the Trigger.dev dashboard under the task's **Schedules** tab.
+
+### Adding a new workflow
+
+1. Create a `.md` file in `apex-brain/workflows/<entity>/workflow-name.md`
+2. Set `schedule: daily` or `schedule: weekly` on line 2
+3. The orchestrator picks it up automatically on the next run — no code changes needed.

@@ -1,5 +1,5 @@
 # Growth Strategy - AI Influencer
-schedule: weekly review
+schedule: weekly
 
 ## Objective
 Grow Instagram following from 0 to 150K in 12 months through organic content, strategic engagement, and targeted paid promotion.

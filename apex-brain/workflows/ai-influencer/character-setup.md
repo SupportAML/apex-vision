@@ -1,5 +1,5 @@
 # Character Setup Workflow - AI Influencer
-schedule: one-time (Phase 0)
+schedule: one-time
 
 ## Objective
 Create a consistent, photorealistic AI character with locked face, voice, and video presence that can be generated in any scene and feels like a real person.

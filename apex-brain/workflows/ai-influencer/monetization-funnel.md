@@ -1,5 +1,5 @@
 # Monetization Funnel - AI Influencer
-schedule: ongoing (activates Phase 2, Month 4+)
+schedule: weekly
 
 ## Objective
 Convert Instagram followers into revenue through brand deals, affiliate marketing, and Fanvue subscriptions.

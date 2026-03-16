@@ -26,7 +26,7 @@ If a skill doesn't exist for a task, search for one online before building from 
 ### Workflows (processes that use skills)
 Workflows live in `workflows/[entity]/`. Each is a markdown SOP.
 A workflow defines: objective, steps, which skills to use, which tools to call, what to output.
-Workflows run on schedule via GitHub Actions or on-demand via dashboard chat.
+Workflows run on schedule via Trigger.dev or on-demand via dashboard chat.
 
 ### Tools (scripts that do mechanical work)
 Tools live in `tools/`. Python scripts, zero or minimal dependencies.

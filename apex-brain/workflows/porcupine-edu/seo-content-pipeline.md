@@ -1,4 +1,5 @@
 # SEO Content Pipeline - Porcupine Edu
+schedule: weekly
 
 ## Objective
 Create and publish SEO-optimized educational articles to capture top Google rankings for porcupine-related keywords.

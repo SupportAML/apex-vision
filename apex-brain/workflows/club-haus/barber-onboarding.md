@@ -1,4 +1,5 @@
 # Barber Onboarding - Club Haus
+schedule: on-demand
 
 ## Objective
 Standardized onboarding process for new barbers joining Club Haus.

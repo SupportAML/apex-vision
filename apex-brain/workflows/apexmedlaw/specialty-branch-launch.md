@@ -1,4 +1,5 @@
 # Specialty Branch Launch - ApexMedLaw
+schedule: on-demand
 
 ## Objective
 Repeatable process for launching a new medical specialty branch under ApexMedLaw.

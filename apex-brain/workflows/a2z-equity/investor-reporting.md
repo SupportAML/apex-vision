@@ -1,4 +1,5 @@
 # Investor Reporting - A2Z Equity
+schedule: monthly
 
 ## Objective
 Generate professional investor updates on portfolio performance and new opportunities.

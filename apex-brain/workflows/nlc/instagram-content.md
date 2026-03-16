@@ -1,4 +1,5 @@
 # Instagram Content Pipeline - NLC
+schedule: weekly
 
 ## Objective
 Post 3x/week on NLC Instagram with educational and credibility-building content.

@@ -3,30 +3,30 @@ import { runOrchestrator } from "./orchestrator.js";
 import { fetchAnalytics } from "./fetch-analytics.js";
 
 /**
- * Daily morning run — 7:30am ET (11:30 UTC).
+ * Monthly first-of-month run — 9am ET on the 1st (13:00 UTC).
  *
- * Runs all workflows tagged `schedule: daily` through the orchestrator,
- * then pulls a fresh analytics snapshot.
+ * Runs all workflows tagged `schedule: monthly` through the orchestrator,
+ * then pulls a 30-day analytics rollup.
  *
  * After deploying, create the schedule in Trigger.dev dashboard:
- *   Task: daily-morning
- *   Cron: 30 11 * * *
+ *   Task: monthly-first
+ *   Cron: 0 13 1 * *
  */
-export const dailyMorning = schedules.task({
-  id: "daily-morning",
+export const monthlyFirst = schedules.task({
+  id: "monthly-first",
   run: async () => {
-    // 1. Run all daily-scheduled workflows through the orchestrator
+    // 1. Run all monthly-scheduled workflows through the orchestrator
     const orchestratorResult = await runOrchestrator.triggerAndWait({
-      schedule: "daily",
+      schedule: "monthly",
     });
 
-    // 2. Fetch rolling 1-day analytics snapshot
+    // 2. Fetch 30-day analytics rollup
     const analyticsResult = await fetchAnalytics.triggerAndWait({
       source: "all",
-      days: 1,
+      days: 30,
     });
 
-    console.log("Daily morning run complete");
+    console.log("Monthly first run complete");
     return { orchestrator: orchestratorResult, analytics: analyticsResult };
   },
 });

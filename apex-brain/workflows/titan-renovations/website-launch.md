@@ -1,4 +1,5 @@
 # Website Launch - Titan Renovations
+schedule: one-time
 
 ## Objective
 Build a professional website that generates inbound leads from property managers.

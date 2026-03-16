@@ -1,4 +1,5 @@
 # Merch Store Setup - Porcupine Edu
+schedule: one-time
 
 ## Objective
 Set up a customizable T-shirt store where visitors can buy porcupine T-shirts with their name printed on them.

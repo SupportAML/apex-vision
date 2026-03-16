@@ -1,5 +1,5 @@
 # Video Production Workflow - AI Influencer
-schedule: daily (integrated into content pipeline)
+schedule: daily
 
 ## Objective
 Produce hyper-realistic video Reels of the AI character that are indistinguishable from real influencer content. Each video should feel like a real person filmed it on their phone or had it professionally shot.
