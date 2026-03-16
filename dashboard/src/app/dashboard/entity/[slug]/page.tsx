@@ -1,7 +1,9 @@
 import { getEntitiesAsync, getWorkflowsAsync, getEntityGoalsAsync } from "@/lib/data";
+import { getEntityFinancials } from "@/lib/financials";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { WorkflowList } from "@/components/workflow-pipeline";
 import { MetricsCards, GoalsView } from "@/components/metrics-cards";
+import { FinancialOverview, FinancialPlaceholder } from "@/components/financial-overview";
 import { Badge } from "@/components/ui/badge";
 import { notFound } from "next/navigation";
 import { Scale, Briefcase, PiggyBank, Scissors, Wrench } from "lucide-react";
@@ -29,6 +31,7 @@ export default async function EntityPage({
 
   const workflows = await getWorkflowsAsync(slug);
   const goals = await getEntityGoalsAsync(slug);
+  const financials = await getEntityFinancials(slug);
   const Icon = entityIcons[slug] || Briefcase;
 
   return (
@@ -53,6 +56,7 @@ export default async function EntityPage({
             Workflows
             <Badge variant="outline" className="ml-1.5 h-4 px-1 text-[9px] border-border/50">{workflows.length}</Badge>
           </TabsTrigger>
+          <TabsTrigger value="financials" className="text-xs">Financials</TabsTrigger>
           <TabsTrigger value="goals" className="text-xs">Goals</TabsTrigger>
         </TabsList>
 
@@ -62,6 +66,14 @@ export default async function EntityPage({
 
         <TabsContent value="workflows" className="mt-5">
           <WorkflowList workflows={workflows} />
+        </TabsContent>
+
+        <TabsContent value="financials" className="mt-5">
+          {financials ? (
+            <FinancialOverview data={financials} />
+          ) : (
+            <FinancialPlaceholder entitySlug={slug} />
+          )}
         </TabsContent>
 
         <TabsContent value="goals" className="mt-5">
