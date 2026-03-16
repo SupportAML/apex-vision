@@ -9,7 +9,7 @@ Direct pushes to `main` are blocked by the environment proxy. You will get a 403
 1. **Always work on your assigned `claude/` branch.** Your session will have a branch like `claude/some-task-XXXXX`. Develop and commit there.
 2. **Push to your `claude/` branch.** Use `git push -u origin claude/your-branch-name`. This will succeed.
 3. **Do NOT push to `main` directly.** It will fail with a 403 every time. Do not retry, do not investigate settings -- it is blocked by design.
-4. **To get changes into `main`, create a Pull Request.** Use `gh pr create` if available, or inform the user that a PR is needed to merge.
+4. **Changes auto-merge into `main`.** A GitHub Action (`.github/workflows/auto-merge-claude.yml`) automatically creates a PR and merges it when you push to any `claude/` branch. No manual step needed.
 
 ### If you hit a 403 on push
 
