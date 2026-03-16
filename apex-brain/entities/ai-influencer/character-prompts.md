@@ -1,6 +1,15 @@
 # Character Design Prompts
 Use these in Midjourney v7 to generate candidate faces. Run all of them, pick the best 5 that look like the same person, then we train the LoRA.
 
+## Approved Character Direction (apply to ALL generations)
+
+- **Age:** 27-29 (not early 20s — more mature, more credible)
+- **Skin:** Natural medium-brown, realistic texture, subtle imperfections — NOT airbrushed or poreless
+- **Features:** Distinctly South Asian — defined brows, broader nose, large dark eyes, full lips, strong cheekbones
+- **Figure:** Curvy, fuller bust
+- **Vibe:** Warm and confident, not cold or editorial-plastic
+- **Never:** Overly flawless skin, Eurocentric features, generic "model" look
+
 ## Base Face Generation (Run These First)
 
 ### Prompt 1: Hero Portrait
