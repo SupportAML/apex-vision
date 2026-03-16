@@ -15,20 +15,17 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // Log the raw body structure so we can debug payload shape
-    console.log("INBOUND BODY KEYS:", JSON.stringify(Object.keys(body)));
-    console.log("INBOUND BODY.data KEYS:", JSON.stringify(Object.keys(body.data || {})));
+    // Single debug log with all key fields for easy reading in Vercel logs
     const payload = body.data || body;
-    console.log("PAYLOAD text:", JSON.stringify((payload.text || "").slice(0, 200)));
-    console.log("PAYLOAD html length:", (payload.html || "").length);
-
-    // Resend inbound webhook payload structure
     const { from, subject, text, html, headers } = payload;
-
-    // Gmail often sends HTML-only replies with no plain text part.
-    // Fall back to stripping tags from the HTML body if text is empty.
-    const plainText = text?.trim() || stripHtmlTags(html || "");
-    console.log("PLAIN TEXT extracted:", JSON.stringify(plainText.slice(0, 200)));
+    const plainText = (text?.trim()) || stripHtmlTags(html || "");
+    console.log("DEBUG", JSON.stringify({
+      bodyKeys: Object.keys(body),
+      dataKeys: Object.keys(body.data || {}),
+      textLen: (text || "").length,
+      htmlLen: (html || "").length,
+      plainTextPreview: plainText.slice(0, 150),
+    }));
 
     // Extract the review ID we encoded in the outbound email headers
     const reviewId =
