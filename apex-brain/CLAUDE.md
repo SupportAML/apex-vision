@@ -74,5 +74,5 @@ See `skills/cli-anything/SKILL.md` for details and business use cases.
 - CRM lead qualification and automated follow-up emails
 - Competitor analysis for legal consulting market
 - Investment opportunity scouting for A2Z Equity
-- Invoice management (WaveApps integration or replacement)
+- Invoice management (WaveApps integration or replacement) — DONE: accounting-connector skill built with Wave provider + Zoho/QBO abstraction. See skills/accounting-connector/SKILL.md
 - Scheduling and onboarding docs for Club Haus

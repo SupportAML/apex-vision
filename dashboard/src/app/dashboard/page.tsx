@@ -27,7 +27,7 @@ export default async function DashboardOverview() {
   const allWorkflows = await getWorkflowsAsync();
 
   const brainConnected = !!process.env.ANTHROPIC_API_KEY;
-  const connectorCount = 11;
+  const connectorCount = 12;
   const connectedCount = [
     process.env.ANTHROPIC_API_KEY,
     process.env.GOOGLE_CLIENT_ID,
@@ -37,6 +37,7 @@ export default async function DashboardOverview() {
     process.env.TWITTER_API_KEY,
     process.env.INSTAGRAM_ACCESS_TOKEN,
     process.env.WAVEAPPS_API_TOKEN,
+    process.env.WAVEAPPS_BUSINESS_ID,
     process.env.PRINTFUL_API_KEY,
     process.env.VERCEL_TOKEN,
   ].filter(Boolean).length;
