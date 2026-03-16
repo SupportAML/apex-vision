@@ -107,10 +107,12 @@ Instructions:
       subject: "Got it — portfolio summary updated",
       html: `<p style="font-family:sans-serif;font-size:14px;color:#18181b;">
         Your feedback has been applied to the portfolio summary template.
-        The next time the report runs, it will reflect your changes.
+      </p>
+      <p style="font-family:sans-serif;font-size:13px;color:#52525b;background:#f4f4f5;padding:12px 16px;border-radius:6px;border-left:3px solid #0a2463;">
+        <strong>Feedback received:</strong><br/>${text.trim().replace(/\n/g, "<br/>")}
       </p>
       <p style="font-family:sans-serif;font-size:13px;color:#71717a;">
-        You can also reply to this email with more changes at any time.
+        Reply to this email with more changes at any time.
       </p>`,
     });
 

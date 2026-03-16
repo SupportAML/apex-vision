@@ -17,7 +17,7 @@ export function buildPortfolioSummaryHtml(): string {
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f5; margin: 0; padding: 24px; color: #18181b; }
   .wrap { max-width: 680px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-  .header { background: #18181b; padding: 28px 32px; }
+  .header { background: #0a2463; padding: 28px 32px; }
   .header h1 { color: #fff; margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
   .header p { color: #a1a1aa; margin: 4px 0 0; font-size: 13px; }
   .body { padding: 28px 32px; }
