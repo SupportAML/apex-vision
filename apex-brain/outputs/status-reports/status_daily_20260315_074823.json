@@ -1,0 +1,176 @@
+{
+  "report_type": "status_report",
+  "generated_at": "2026-03-15T07:48:23.111437",
+  "period": "daily",
+  "scope": "all",
+  "portfolio_summary": {
+    "total_entities": 7,
+    "active_entities": 1,
+    "total_runs": 3,
+    "completed_runs": 1,
+    "failed_runs": 1,
+    "success_rate_pct": 33.3,
+    "pending_approvals": 1,
+    "entities_needing_attention": [
+      "a2z-equity",
+      "apexmedlaw",
+      "cason-plastics",
+      "club-haus",
+      "nlc",
+      "porcupine-edu",
+      "titan-renovations"
+    ]
+  },
+  "entities": [
+    {
+      "entity": "a2z-equity",
+      "health": "red",
+      "health_label": "No activity",
+      "workflows_defined": 2,
+      "workflow_names": [
+        "opportunity-scouting",
+        "investor-reporting"
+      ],
+      "runs_in_period": 0,
+      "runs_completed": 0,
+      "runs_failed": 0,
+      "pending_approvals": 0,
+      "recent_outputs": [],
+      "goals_summary": "# A2Z Equity Goals\n\n## Q2 2026\n- 3+ vetted investment opportunities in pipeline\n- $500k+ raised this round\n- Investor pitch deck template that can be reused per opportunity\n\n## Q3 2026\n- First returns reported to investors with professional reporting\n- 5+ vetted opportunities in active pipeline\n- New investor channels beyond existing network",
+      "has_config": true,
+      "has_brand": true,
+      "has_reviewers": false
+    },
+    {
+      "entity": "apexmedlaw",
+      "health": "red",
+      "health_label": "No activity",
+      "workflows_defined": 1,
+      "workflow_names": [
+        "specialty-branch-launch"
+      ],
+      "runs_in_period": 0,
+      "runs_completed": 0,
+      "runs_failed": 0,
+      "pending_approvals": 0,
+      "recent_outputs": [],
+      "goals_summary": "# ApexMedLaw Goals\n\n## Q2 2026\n- Critical care branch live with dedicated physician pipeline\n- At least 1 case placed through CC branch\n- Unified branding and website for multi-specialty offering\n\n## Q3 2026\n- 3+ specialty branches active\n- Shared law firm relationships generating cross-specialty referrals\n- GI branch formalized with dedicated pipeline",
+      "has_config": true,
+      "has_brand": true,
+      "has_reviewers": false
+    },
+    {
+      "entity": "cason-plastics",
+      "health": "red",
+      "health_label": "No activity",
+      "workflows_defined": 0,
+      "workflow_names": [],
+      "runs_in_period": 0,
+      "runs_completed": 0,
+      "runs_failed": 0,
+      "pending_approvals": 0,
+      "recent_outputs": [],
+      "goals_summary": "# Cason Plastic Surgery \u2014 Goals\n\n## Month 1 (Launch)\n- Website live and indexed by Google\n- Google Business Profile claimed and optimized\n- Twitter/X account active with 15+ published tweets\n- Instagram content strategy defined (complement existing @drrogercason)\n- First blog post published (SEO target: \"best plastic surgeon Dallas\")\n- Practice branding finalized (logo, colors, business cards)\n\n## Month 2 (Build Presence)\n- 500 Twitter/X followers\n- 3 blog posts live targeting local SEO keywords",
+      "has_config": true,
+      "has_brand": true,
+      "has_reviewers": true
+    },
+    {
+      "entity": "club-haus",
+      "health": "red",
+      "health_label": "No activity",
+      "workflows_defined": 2,
+      "workflow_names": [
+        "barber-onboarding",
+        "website-launch"
+      ],
+      "runs_in_period": 0,
+      "runs_completed": 0,
+      "runs_failed": 0,
+      "pending_approvals": 0,
+      "recent_outputs": [],
+      "goals_summary": "# Club Haus Goals\n\n## Q2 2026\n- Website live\n- Square POS configured and tested\n- First barbers onboarded with documented process\n- Interior design finalized with team input via whiteboard tool\n\n## Q3 2026\n- Grand opening\n- Steady booking flow through online scheduling\n- Social media presence active (Instagram, TikTok)",
+      "has_config": true,
+      "has_brand": true,
+      "has_reviewers": false
+    },
+    {
+      "entity": "nlc",
+      "health": "yellow",
+      "health_label": "1 failed run(s)",
+      "workflows_defined": 5,
+      "workflow_names": [
+        "instagram-content",
+        "crm-lead-management",
+        "law-firm-outreach",
+        "physician-recruitment",
+        "linkedin-content"
+      ],
+      "runs_in_period": 3,
+      "runs_completed": 1,
+      "runs_failed": 1,
+      "pending_approvals": 1,
+      "recent_outputs": [
+        {
+          "file": "linkedin-content_20260315_035118.json",
+          "workflow": "linkedin-content",
+          "timestamp": "2026-03-15T03:50:19.352365",
+          "steps_total": 6,
+          "steps_completed": 6,
+          "needs_approval": true
+        },
+        {
+          "file": "linkedin-content_20260315_034451.json",
+          "workflow": "linkedin-content",
+          "timestamp": "2026-03-15T03:44:51.566984",
+          "steps_total": 6,
+          "steps_completed": 0,
+          "needs_approval": false
+        }
+      ],
+      "goals_summary": "# NLC Goals\n\n## Q2 2026\n- 8+ cases/month (from 3-4)\n- 2+ new large law firm relationships\n- Case management dashboard demo-ready for in-person law firm meetings\n- Active social media presence: daily LinkedIn, 3x/week Instagram and Threads\n- 5+ new physicians recruited to roster\n\n## Q3 2026\n- 15+ cases/month\n- 10+ physicians on roster across neuro specialties\n- AI-generated content pipeline running with minimal human review\n- Inbound leads from social media and website",
+      "has_config": true,
+      "has_brand": true,
+      "has_reviewers": false
+    },
+    {
+      "entity": "porcupine-edu",
+      "health": "red",
+      "health_label": "No activity",
+      "workflows_defined": 2,
+      "workflow_names": [
+        "merch-store-setup",
+        "seo-content-pipeline"
+      ],
+      "runs_in_period": 0,
+      "runs_completed": 0,
+      "runs_failed": 0,
+      "pending_approvals": 0,
+      "recent_outputs": [],
+      "goals_summary": "# Porcupine Edu Goals\n\n## Month 1\n- Website live with 10+ pages of educational content\n- T-shirt store integrated with print-on-demand provider\n- Google Search Console and Analytics configured\n- Initial social media presence (Instagram, Pinterest)\n\n## Month 3\n- 20+ SEO-optimized articles published\n- First page rankings for 5+ porcupine-related keywords\n- First T-shirt sales\n\n## Month 6\n- #1 position for primary keywords\n- 10k+ monthly organic visitors\n- Consistent merch sales",
+      "has_config": true,
+      "has_brand": true,
+      "has_reviewers": false
+    },
+    {
+      "entity": "titan-renovations",
+      "health": "red",
+      "health_label": "No activity",
+      "workflows_defined": 1,
+      "workflow_names": [
+        "website-launch"
+      ],
+      "runs_in_period": 0,
+      "runs_completed": 0,
+      "runs_failed": 0,
+      "pending_approvals": 0,
+      "recent_outputs": [],
+      "goals_summary": "# Titan Renovations Goals\n\n## Q3 2026\n- Professional website live with service descriptions and contact form\n- Invoicing system set up (Square or WaveApps)\n- First inbound leads from web presence\n- Google Business Profile optimized",
+      "has_config": true,
+      "has_brand": true,
+      "has_reviewers": false
+    }
+  ],
+  "priorities": "# Priorities (Updated 2026-03-14)\n\n## Tier 1: Revenue Now\n1. **NLC lead generation** - More cases, bigger law firms, more physicians. Social media + LinkedIn outreach + content marketing.\n2. **NLC internal tools** - Get the case management dashboard production-ready for in-person marketing to law firms.\n3. **A2Z Equity growth** - Find investment opportunities, create investor pitches, expand investor base beyond friends and family. Target: significantly exceed $250k raised last year.\n\n## Tier 2: Launch and Build\n4. **ApexMedLaw expansion** - Critical care branch with the CC doc, then more specialties. Each gets its own pipeline.\n5. **Club Haus setup** - Website prototype, Square integration, scheduling, onboarding docs, interior design tools, team whiteboard/webapp.\n\n## Tier 3: Structure and Scale\n6. **Titan Renovations** - Website, invoicing, basic business structure.\n7. **Tool internalization** - Replace or AI-augment WaveApps, reduce dependency on external tools.\n8. **Personal dashb",
+  "goals": "# Goals (Derived from Priorities)\n\n## Q2 2026\n- NLC: 8+ cases/month (up from 3-4). At least 2 new large law firm relationships.\n- NLC: Internal dashboard demo-ready for law firm meetings.\n- A2Z: Identify 3+ investment opportunities. Raise $500k+ this round.\n- ApexMedLaw: Critical care branch live with dedicated pipeline.\n- Club Haus: Website live, Square POS configured, first barbers onboarded.\n\n## Q3 2026\n- NLC: 15+ cases/month with 10+ physicians on roster.\n- A2Z: First returns reported to investors. Pipeline of 5+ vetted opportunities.\n- Titan Renovations: Website, invoicing, first inbound leads from web.\n- Dashboard: Personal life management pages active for Abhi and Ovi.\n\n## Ongoing\n- Reduce Abhi's meeting hours by 50% through AI-driven feedback loops.\n- Every entity has automated content pipelines running.\n- System self-improves weekly based on approval data."
+}
