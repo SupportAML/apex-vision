@@ -3,7 +3,7 @@
 ## Managed Accounts
 
 ### 1. Personal Gmail
-- **Address:** _(add personal Gmail here)_
+- **Address:** oviinam9@gmail.com
 - **Type:** Personal
 - **Used for:** Personal correspondence, subscriptions, non-business items
 - **Triage rules:** See triage-rules.md
