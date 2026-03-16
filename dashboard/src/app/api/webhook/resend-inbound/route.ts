@@ -15,23 +15,37 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // Single debug log with all key fields for easy reading in Vercel logs
     const payload = body.data || body;
     const { from, subject, text, html, headers } = payload;
-    const plainText = (text?.trim()) || stripHtmlTags(html || "");
+
+    // headers is an array of {name, value} objects in Resend's inbound format
+    let reviewId: string | null = null;
+    if (Array.isArray(headers)) {
+      const h = (headers as { name: string; value: string }[]).find(
+        (h) => h.name.toLowerCase() === "x-apex-review-id"
+      );
+      reviewId = h?.value || null;
+    } else {
+      reviewId = headers?.["x-apex-review-id"] || headers?.["X-Apex-Review-Id"] || null;
+    }
+    reviewId = reviewId || extractReviewIdFromSubject(subject);
+
+    // Extract just the new reply text — strip the quoted thread before processing.
+    // Apple Mail sends HTML-only replies; the quoted original email is in a <blockquote>.
+    let feedbackText = text?.trim() || "";
+    if (!feedbackText) {
+      const htmlNoQuotes = (html || "").replace(/<blockquote[\s\S]*?<\/blockquote>/gi, "");
+      feedbackText = stripHtmlTags(htmlNoQuotes);
+    } else {
+      // Strip >-quoted lines from plain text replies
+      feedbackText = feedbackText.split("\n").filter((l) => !l.trimStart().startsWith(">")).join("\n").trim();
+    }
+
     console.log("DEBUG", JSON.stringify({
-      bodyKeys: Object.keys(body),
-      dataKeys: Object.keys(body.data || {}),
       textLen: (text || "").length,
       htmlLen: (html || "").length,
-      plainTextPreview: plainText.slice(0, 150),
+      feedbackPreview: feedbackText.slice(0, 200),
     }));
-
-    // Extract the review ID we encoded in the outbound email headers
-    const reviewId =
-      headers?.["x-apex-review-id"] ||
-      headers?.["X-Apex-Review-Id"] ||
-      extractReviewIdFromSubject(subject);
 
     // Fallback: detect known subjects when header is stripped by email client
     const subjectLower = (subject || "").toLowerCase();
@@ -60,7 +74,7 @@ export async function POST(req: NextRequest) {
       await tasks.trigger("process-portfolio-feedback", {
         from: fromStr,
         subject: subject || "",
-        text: plainText,
+        text: feedbackText,
       });
       console.log(`Triggered portfolio feedback processing for: ${subject}`);
     } else {
@@ -68,7 +82,7 @@ export async function POST(req: NextRequest) {
       await tasks.trigger("process-email-reply", {
         from: fromStr,
         subject: subject || "",
-        text: plainText,
+        text: feedbackText,
         reviewId,
       });
       console.log(`Triggered review processing for: ${subject}`);
