@@ -29,15 +29,34 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ status: "ignored" }, { status: 200 });
     }
 
-    // Trigger the process-email-reply task in Trigger.dev
-    await tasks.trigger("process-email-reply", {
-      from: typeof from === "string" ? from : from?.[0] || "unknown",
-      subject: subject || "",
-      text: text || "",
-      reviewId,
-    });
+    // Decode the reviewId to determine routing
+    let reviewMeta: Record<string, string> = {};
+    try {
+      reviewMeta = JSON.parse(Buffer.from(reviewId, "base64url").toString("utf-8"));
+    } catch {
+      // Not JSON — treat as legacy review ID
+    }
 
-    console.log(`Triggered review processing for: ${subject}`);
+    const fromStr = typeof from === "string" ? from : from?.[0] || "unknown";
+
+    if (reviewMeta.type === "portfolio-feedback") {
+      // Route to the portfolio feedback handler
+      await tasks.trigger("process-portfolio-feedback", {
+        from: fromStr,
+        subject: subject || "",
+        text: text || "",
+      });
+      console.log(`Triggered portfolio feedback processing for: ${subject}`);
+    } else {
+      // Default: route to the content review handler
+      await tasks.trigger("process-email-reply", {
+        from: fromStr,
+        subject: subject || "",
+        text: text || "",
+        reviewId,
+      });
+      console.log(`Triggered review processing for: ${subject}`);
+    }
     return NextResponse.json({ status: "triggered" }, { status: 200 });
   } catch (error) {
     console.error("Webhook error:", error);

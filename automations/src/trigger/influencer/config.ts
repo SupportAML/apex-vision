@@ -48,9 +48,9 @@ export const SCRIPTS_DIR = path.join(OUTPUT_DIR, "scripts");
 export const AUDIO_DIR = path.join(OUTPUT_DIR, "audio");
 export const ANALYTICS_DIR = path.join(OUTPUT_DIR, "analytics");
 
-// Ensure output dirs exist
+// Ensure output dirs exist (local only — cloud uses GitHub API for file ops)
 for (const dir of [IMAGES_DIR, REELS_DIR, SCRIPTS_DIR, AUDIO_DIR, ANALYTICS_DIR]) {
-  fs.mkdirSync(dir, { recursive: true });
+  try { fs.mkdirSync(dir, { recursive: true }); } catch { /* no-op in cloud */ }
 }
 
 // --- File helpers ---
