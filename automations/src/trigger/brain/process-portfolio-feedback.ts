@@ -75,11 +75,15 @@ Instructions:
       throw new Error("Claude returned no content");
     }
 
-    // Strip any preamble before the TypeScript code starts
-    const codeStart = updatedContent.indexOf("/**");
-    if (codeStart > 0) updatedContent = updatedContent.slice(codeStart);
     // Strip markdown fences if Claude wrapped in ```
-    updatedContent = updatedContent.replace(/^```(?:typescript)?\n?/m, "").replace(/\n?```$/m, "").trim();
+    updatedContent = updatedContent.replace(/^```(?:typescript)?\n?/, "").replace(/\n?```$/, "").trim();
+    // Strip any prose preamble — valid TS files start with /**, import, or export
+    const tsStart = updatedContent.search(/^(\/\*\*|import |export )/m);
+    if (tsStart > 0) updatedContent = updatedContent.slice(tsStart).trim();
+    // Validate it looks like TypeScript before committing
+    if (!updatedContent.includes("export function") && !updatedContent.includes("export const")) {
+      throw new Error("Claude response doesn't look like valid TypeScript — aborting commit");
+    }
 
     // 3. Commit the updated file back to GitHub
     await octokit.repos.createOrUpdateFileContents({
