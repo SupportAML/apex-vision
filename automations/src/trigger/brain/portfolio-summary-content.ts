@@ -251,6 +251,18 @@ export function buildPortfolioSummaryHtml(): string {
       </tbody>
     </table>
 
+    <h2>Reminders</h2>
+    <table>
+      <thead><tr><th>Due</th><th>Action</th><th>Context</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>2026-03-18</strong></td>
+          <td>Complete Meta Business Portfolio verification</td>
+          <td>Needed to create Developer App → get Instagram Graph API token → activate Farah pipeline. Go to business.facebook.com/settings → Authorizations and verifications → complete identity verification started 2026-03-16.</td>
+        </tr>
+      </tbody>
+    </table>
+
     <h2>Q2 2026 Targets</h2>
     <table>
       <thead><tr><th>Entity</th><th>Target</th></tr></thead>
