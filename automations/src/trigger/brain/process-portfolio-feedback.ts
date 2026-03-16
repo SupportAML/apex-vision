@@ -77,9 +77,10 @@ Instructions:
 
     // Strip markdown fences if Claude wrapped in ```
     updatedContent = updatedContent.replace(/^```(?:typescript)?\n?/, "").replace(/\n?```$/, "").trim();
-    // Strip any prose preamble — valid TS files start with /**, import, or export
-    const tsStart = updatedContent.search(/^(\/\*\*|import |export )/m);
-    if (tsStart > 0) updatedContent = updatedContent.slice(tsStart).trim();
+    // Strip any prose preamble — find the first line that starts a valid TS file
+    const lines = updatedContent.split("\n");
+    const tsStartIdx = lines.findIndex((l) => /^(\/\*\*|import |export )/.test(l));
+    if (tsStartIdx > 0) updatedContent = lines.slice(tsStartIdx).join("\n").trim();
     // Validate it looks like TypeScript before committing
     if (!updatedContent.includes("export function") && !updatedContent.includes("export const")) {
       throw new Error("Claude response doesn't look like valid TypeScript — aborting commit");
