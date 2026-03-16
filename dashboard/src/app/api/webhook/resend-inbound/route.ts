@@ -24,7 +24,14 @@ export async function POST(req: NextRequest) {
       headers?.["X-Apex-Review-Id"] ||
       extractReviewIdFromSubject(subject);
 
-    if (!reviewId) {
+    // Fallback: detect known subjects when header is stripped by email client
+    const subjectLower = (subject || "").toLowerCase();
+    const inferredType =
+      !reviewId && subjectLower.includes("apex vision portfolio")
+        ? "portfolio-feedback"
+        : null;
+
+    if (!reviewId && !inferredType) {
       console.log("Inbound email without review ID, ignoring:", subject);
       return NextResponse.json({ status: "ignored" }, { status: 200 });
     }
@@ -39,7 +46,7 @@ export async function POST(req: NextRequest) {
 
     const fromStr = typeof from === "string" ? from : from?.[0] || "unknown";
 
-    if (reviewMeta.type === "portfolio-feedback") {
+    if (reviewMeta.type === "portfolio-feedback" || inferredType === "portfolio-feedback") {
       // Route to the portfolio feedback handler
       await tasks.trigger("process-portfolio-feedback", {
         from: fromStr,
