@@ -96,6 +96,41 @@ export function buildPortfolioSummaryHtml(): string {
       </tbody>
     </table>
 
+    <h2>Revenue Snapshot</h2>
+    <table>
+      <thead><tr><th>Entity</th><th>Current Volume</th><th>Avg. Revenue / Unit</th><th>Est. Monthly Revenue</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>NLC</strong></td>
+          <td>3–4 cases/mo</td>
+          <td>$1,500–$2,000 / case</td>
+          <td>$4,500–$8,000</td>
+          <td>Target: 8+ cases/mo (~$12k–$16k)</td>
+        </tr>
+        <tr>
+          <td><strong>Club Haus</strong></td>
+          <td>Pre-launch</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Targeting 5 barbers by end of Q2</td>
+        </tr>
+        <tr>
+          <td><strong>A2Z Equity</strong></td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Investment vehicle; revenue via deal returns</td>
+        </tr>
+        <tr>
+          <td><strong>Titan Renovations</strong></td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Unstructured; no invoicing yet</td>
+        </tr>
+      </tbody>
+    </table>
+
     <h2>Automations Running</h2>
     <table>
       <thead><tr><th>Workflow</th><th>Schedule</th><th>What It Does</th><th>Status</th></tr></thead>
@@ -223,7 +258,7 @@ export function buildPortfolioSummaryHtml(): string {
         <tr><td><strong>NLC</strong></td><td>8+ cases/mo (from 3–4), 2+ new law firm relationships</td></tr>
         <tr><td><strong>A2Z Equity</strong></td><td>$500k raised, 3+ vetted opportunities</td></tr>
         <tr><td><strong>ApexMedLaw</strong></td><td>Critical care branch live</td></tr>
-        <tr><td><strong>Club Haus</strong></td><td>Website live, Square POS, first barbers onboarded</td></tr>
+        <tr><td><strong>Club Haus</strong></td><td>Website live, Square POS, 5 barbers onboarded by end of Q2</td></tr>
         <tr><td><strong>Abhi</strong></td><td>Meeting hours reduced 50% via AI feedback loops</td></tr>
       </tbody>
     </table>
