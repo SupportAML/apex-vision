@@ -3,12 +3,11 @@ Use these in Midjourney v7 to generate candidate faces. Run all of them, pick th
 
 ## Approved Character Direction (apply to ALL generations)
 
-- **Age:** 27-29 (not early 20s — more mature, more credible)
-- **Skin:** Natural medium-brown, realistic texture, subtle imperfections — NOT airbrushed or poreless
-- **Features:** Distinctly South Asian — defined brows, broader nose, large dark eyes, full lips, strong cheekbones
-- **Figure:** Curvy, fuller bust
-- **Vibe:** Warm and confident, not cold or editorial-plastic
-- **Never:** Overly flawless skin, Eurocentric features, generic "model" look
+- **Age:** 24 (mid-20s)
+- **Skin:** Warm golden-brown, soft and glowing
+- **Features:** South Asian — dark eyes, full lips, high cheekbones
+- **Vibe:** Elegant, confident, editorial quality
+- **Reference:** `outputs/ai-influencer/profile/farah-profile-photo-v1.jpg` — approved look
 
 ## Base Face Generation (Run These First)
 

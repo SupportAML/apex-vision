@@ -1,0 +1,7 @@
+[     927ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://www.instagram.com/graphql/query/?doc_id=18113378221181848&variables=%7B%22include_chaining%22%3Afalse%2C%22include_highlight_reels%22%3Atrue%2C%22include_live_status%22%3Afalse%2C%22include_logged_out_extras%22%3Atrue%2C%22include_reel%22%3Afalse%2C%22include_suggested_users%22%3Afalse%2C%22user_id%22%3A%225611299310%22%7D:0
+[     930ms] [ERROR] ErrorUtils caught an error:
+
+invalid request [Caught in: unexpected]
+
+Subsequent non-fatal errors won't be logged; see https://fburl.com/debugjs. {clientTime: 1773640519, extra: Object, guardList: Array(0), hash: xlb2h3, isNormalizedError: true} @ https://static.cdninstagram.com/rsrc.php/v4/yJ/r/XpnBUoxX61b.js:78
+[    3504ms] [ERROR] Failed to launch 'intent://instagram.com/_u/drrogercason?ig_mid=690222A1-8BC9-4FC7-9FD5-B703CF35C298&utm_source=instagramweb#Intent;package=com.instagram.android;action=android.intent.action.VIEW;scheme=https;S.browser_fallback_url=%2Fdownload%2F;end' because the scheme does not have a registered handler. @ https://www.instagram.com/drrogercason/:0
