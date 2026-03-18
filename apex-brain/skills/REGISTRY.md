@@ -16,3 +16,12 @@
 | accounting-connector | Custom (Apex Brain) | 2026-03-15 | 1.0 |
 | status-report | custom (Apex Brain) | 2026-03-15 | 1.0 |
 | skill-creator | anthropics/skills (GitHub) | 2026-03-16 | latest |
+| market (orchestrator) | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| market-audit | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| market-brand | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| market-funnel | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| market-landing | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| market-launch | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| market-proposal | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| market-report | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| market-report-pdf | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
