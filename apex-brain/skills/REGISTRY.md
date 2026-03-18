@@ -25,3 +25,4 @@
 | market-proposal | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
 | market-report | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
 | market-report-pdf | zubair-trabzada/ai-marketing-claude + Apex Vision | 2026-03-18 | 1.0 |
+| humanizer | blader/humanizer (GitHub) | 2026-03-18 | v2.2.0 |

@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "humanizer": {
+      "source": "blader/humanizer",
+      "sourceType": "github",
+      "computedHash": "52b73cf256fad4165855aca93cc86cbf3aba698b2474b0d7a8e502b2717af1a3"
+    },
     "autoresearch": {
       "source": "uditgoenka/autoresearch",
       "sourceType": "github",
