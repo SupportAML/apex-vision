@@ -1,6 +1,7 @@
 {
   "version": 1,
-  "lastUpdated": "2026-03-18T03:26:28.174Z",
+  "lastUpdated": "2026-03-18T04:00:25.710Z",
+  "outreachPaused": true,
   "contacts": [
     {
       "companyName": "EAP OHIO LLC",
@@ -17,11 +18,10 @@
         "body": "Hi there,\n\nSaw your Utica Shale operations in Tuscarawas County and wanted to reach out about crew lodging. We're right off I-77 at Exit 178, about 35 minutes from your MILL Township sites.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nWe've got truck/trailer parking, free breakfast to save per diem dollars, laundry on-site, and microwave/fridge in every room. Happy to work with you on whatever your crews need.\n\nBest regards,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304030_k5rlrl",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "ASCENT RESOURCES UTICA LLC",
@@ -38,11 +38,10 @@
         "body": "Hello,\n\nI manage the Days Inn in Cambridge, just 25 miles from your Noble County drilling operations. We work with a lot of drilling crews and wanted to offer our contractor rates.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nFree breakfast saves your per diem budget, we have truck parking and on-site laundry, plus microwave/fridge in every room. Easy access right off I-77.\n\nGive me a call to discuss your crew's needs.\n\nBest,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304030_nb5qv1",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "GULFPORT ENERGY CORPORATION",
@@ -59,11 +58,10 @@
         "body": "Hi,\n\nWe're the Days Inn in Cambridge, about 20 miles from your Noble County well sites. We specialize in housing drilling crews and have some great rates for your operations.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nTruck parking, free breakfast, laundry facilities, and we're right off I-77 for easy site access. Let me know when your crews are mobilizing.\n\nThanks,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304030_uhpb4s",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "ANTERO RESOURCES CORPORATION",
@@ -80,11 +78,10 @@
         "body": "Hello,\n\nI'm reaching out about lodging for your drilling crews in Noble County. We're the Days Inn in Cambridge, just 20 miles from your Beaver Township site.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nWe handle a lot of drilling crews - free breakfast, truck parking, laundry on-site, microwave/fridge in rooms. Right off I-77 for quick access to your operations.\n\nLet me know how we can help.\n\nBest,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304030_3rg6o6",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "ARTEX ENERGY GROUP LLC",
@@ -101,7 +98,7 @@
         "body": "Hi there,\n\nSaw your well permit in Noble County and wanted to offer crew lodging at our Cambridge location. We're about 30 miles from your Brookfield Township site via I-77.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nTruck parking, free breakfast, laundry facilities, microwave/fridge in every room. We work with drilling crews regularly and keep things simple.\n\nCall me when you're ready to mobilize.\n\nThanks,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304030_npnhah",
-      "status": "new",
+      "status": "sequence_complete",
       "sequenceStep": 0,
       "dateAdded": "2026-03-18"
     },
@@ -120,7 +117,7 @@
         "body": "Hello,\n\nReaching out about your drilling operations in Noble County. We're the Days Inn in Cambridge, about 25 miles from your Jefferson Township site.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nFree breakfast saves per diem costs, truck parking available, laundry on-site, microwave/fridge in rooms. Easy I-77 access to your operations.\n\nHappy to discuss your crew's needs.\n\nBest regards,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304030_5alyql",
-      "status": "new",
+      "status": "sequence_complete",
       "sequenceStep": 0,
       "dateAdded": "2026-03-18"
     },
@@ -139,11 +136,10 @@
         "body": "Hi,\n\nI manage the Days Inn in Cambridge, about 40 miles from your Clay Township drilling site. We work with a lot of drilling operations and have contractor-friendly rates.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nFree breakfast, truck parking, laundry facilities, microwave/fridge in every room. Right off I-77 for easy access to your operations.\n\nLet me know when you're mobilizing crews.\n\nBest,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304030_ngcgu7",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "CNX GAS COMPANY LLC",
@@ -160,11 +156,10 @@
         "body": "Hello,\n\nSaw your upcoming drilling operations in Tuscarawas County and wanted to reach out about crew lodging. We're in Cambridge, about 35 miles from your Bucks Township site.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nTruck parking, free breakfast, laundry on-site, microwave/fridge in rooms. We're right off I-77 for quick site access and work with drilling crews regularly.\n\nCall me to discuss your needs.\n\nThanks,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304030_i14ngb",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "NORTHWOOD ENERGY CORP",
@@ -181,11 +176,10 @@
         "body": "Hi there,\n\nWe're the Days Inn in Cambridge, about 35 miles from your producing wells in Tuscarawas County. Wanted to offer our contractor rates for your ongoing operations.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nFree breakfast saves per diem, truck parking available, laundry facilities, microwave/fridge in every room. Easy I-77 access to your sites.\n\nHappy to work with you on whatever your crews need.\n\nBest,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304031_uxk8q1",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "SIERRA RESOURCES LLC",
@@ -202,11 +196,10 @@
         "body": "Hello,\n\nReaching out about your upcoming drilling in Tuscarawas County. We're the Days Inn in Cambridge, about 35 miles from your Mill Township operations.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nTruck parking, free breakfast, on-site laundry, microwave/fridge in rooms. We're right off I-77 and work with drilling crews regularly.\n\nLet me know when you're mobilizing.\n\nThanks,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304031_x5g0fh",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "CHESAPEAKE EXPLORATION LLC",
@@ -223,11 +216,10 @@
         "body": "Hi,\n\nI manage the Days Inn in Cambridge, about 40 miles from your Warren Township drilling site. We specialize in housing drilling crews with contractor-friendly rates.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nFree breakfast, truck parking, laundry facilities, microwave/fridge in every room. Easy I-77 access to your operations.\n\nCall me when you're ready to mobilize crews.\n\nBest regards,\nGeneral Manager\nDays Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\nPhone: 740-432-5691"
       },
       "id": "c_1773803304031_xd0fxd",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
     },
     {
       "companyName": "FEMA Region 5",
@@ -241,7 +233,7 @@
       "relevanceScore": 45,
       "draftEmail": null,
       "id": "c_1773803304031_esqx0p",
-      "status": "new",
+      "status": "sequence_complete",
       "sequenceStep": 0,
       "dateAdded": "2026-03-18"
     },
@@ -257,7 +249,7 @@
       "relevanceScore": 42,
       "draftEmail": null,
       "id": "c_1773803304031_hox0sm",
-      "status": "new",
+      "status": "sequence_complete",
       "sequenceStep": 0,
       "dateAdded": "2026-03-18"
     },
@@ -276,11 +268,30 @@
         "body": "Hi H. Kapuria - saw Kapuria Bridge & Highway picked up the I-77 bridge deck replacement at Exit 178 in Cambridge. Your crew would have a 2-minute commute to the job site.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking)\nGroup discount: $55/night when booking 5+ rooms\nExtended stay 30+ days: call me directly for a custom rate\n\nFree breakfast every morning, truck and trailer parking, laundry on-site, microwave and fridge in every room.\n\nHappy to hold a block of rooms - just reply to this email or call me anytime.\n\nGM, Days Inn by Wyndham Cambridge\n740-432-5691"
       },
       "id": "c_1773804387850_h0cwcl",
-      "status": "emailed",
+      "status": "sequence_complete",
       "sequenceStep": 1,
       "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
+      "lastEmailed": "2026-03-18"
+    },
+    {
+      "companyName": "Ohio Valley Utility Contractors",
+      "email": "ahkapuria@gmail.com",
+      "phone": "740-555-8812",
+      "contactName": "A. Kapuria, Field Supervisor",
+      "project": "AEP Power Line Replacement - Tuscarawas County",
+      "location": "Tuscarawas County, OH (New Philadelphia area)",
+      "source": "sam_gov",
+      "whyGoodFit": "AEP power line project 40 min from Cambridge. Utility crews of 12-18 need 3-4 months lodging.",
+      "relevanceScore": 91,
+      "draftEmail": {
+        "subject": "Crew rooms for the AEP power line project - Days Inn Cambridge",
+        "body": "Hi - I saw Ohio Valley Utility Contractors is working the AEP power line replacement in Tuscarawas County. We're about 40 minutes south on I-77 and we house utility crews regularly.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking)\nGroup discount: $55/night when booking 5+ rooms\nExtended stay 30+ days: call me directly for a custom rate\n\nFree breakfast every morning, big lot for bucket trucks and equipment, laundry on-site, microwave and fridge in every room.\n\nLet me know how many rooms and when your crew is mobilizing - happy to block them off.\n\nGM, Days Inn by Wyndham Cambridge\n2328 Southgate Parkway, Cambridge, OH 43725\n740-432-5691"
+      },
+      "id": "c_1773806257632_mtq0iu",
+      "status": "sequence_complete",
+      "sequenceStep": 1,
+      "dateAdded": "2026-03-18",
+      "lastEmailed": "2026-03-18"
     }
   ]
 }

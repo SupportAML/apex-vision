@@ -18,6 +18,13 @@ export async function POST(req: NextRequest) {
     const payload = body.data || body;
     const { from, subject, text, html, headers } = payload;
 
+    // Skip our own notification emails to prevent loops
+    const fromStr0 = typeof from === "string" ? from : from?.[0] || "";
+    if (fromStr0.includes("updates.apexmedlaw.com")) {
+      console.log("Ignoring our own email:", subject);
+      return NextResponse.json({ status: "self-skip" }, { status: 200 });
+    }
+
     // headers is an array of {name, value} objects in Resend's inbound format
     let reviewId: string | null = null;
     let contactId: string | null = null;
@@ -103,8 +110,11 @@ export async function POST(req: NextRequest) {
           body: JSON.stringify({
             from: REVIEW_FROM,
             to: ["hkapuria@gmail.com", "ahkapuria@gmail.com"],
-            subject: `[CONTRACTOR REPLY] ${fromStr} responded to Days Inn outreach`,
+            subject: `New lead reply: ${fromStr} - ${new Date().toISOString().slice(0, 10)}`,
             html: forwardHtml,
+            headers: {
+              "X-Apex-Notification": "contractor-reply",
+            },
           }),
         });
 

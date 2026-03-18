@@ -36,6 +36,7 @@ export interface Contact {
 export interface ContactsDB {
   version: number;
   lastUpdated: string;
+  outreachPaused?: boolean;
   contacts: Contact[];
 }
 

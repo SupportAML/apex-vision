@@ -74,13 +74,21 @@ export const contractorLeadsPipeline = schedules.task({
     saveContacts(db);
     console.log(`${newContacts.length} new contacts added (${qualifiedLeads.length - newContacts.length} already in DB)`);
 
-    // Step 4: Send Touch 1 to new contacts
-    console.log("Step 4: Sending initial outreach...");
-    const outreachResults = await sendInitialOutreach(newContacts);
+    // Step 4: Send Touch 1 to new contacts (skip if paused)
+    let outreachResults = { sent: 0, failed: 0 };
+    let sequenceResults = { followUp1Sent: 0, followUp2Sent: 0, sequenceCompleted: 0, errors: 0 };
 
-    // Step 5: Run follow-up sequence
-    console.log("Step 5: Running follow-up sequence...");
-    const sequenceResults = await runFollowUpSequence();
+    if (db.outreachPaused) {
+      console.log("Step 4: OUTREACH PAUSED -- skipping emails");
+      console.log("Step 5: OUTREACH PAUSED -- skipping follow-ups");
+    } else {
+      console.log("Step 4: Sending initial outreach...");
+      outreachResults = await sendInitialOutreach(newContacts);
+
+      // Step 5: Run follow-up sequence
+      console.log("Step 5: Running follow-up sequence...");
+      sequenceResults = await runFollowUpSequence();
+    }
 
     // Step 6: Send owner digest
     console.log("Step 6: Sending owner digest...");
