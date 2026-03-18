@@ -55,23 +55,35 @@ export async function POST(req: NextRequest) {
         subjectStr.includes("crew lodging") ||
         subjectStr.includes("days inn") ||
         subjectStr.includes("crew rates") ||
-        subjectStr.includes("contractor")
+        subjectStr.includes("contractor") ||
+        subjectStr.includes("pipeline") ||
+        subjectStr.includes("bridge")
       ) {
-        contactId = "subject-match"; // Flag for contractor lead reply
+        contactId = "subject-match";
       }
     }
+
+    console.log("INBOUND_DEBUG", JSON.stringify({
+      from, subject: subject?.slice(0, 80), contactId, reviewId,
+      headerCount: Array.isArray(headers) ? headers.length : "not-array",
+    }));
 
     // --- Route: Contractor lead reply ---
     if (contactId) {
       const fromStr = typeof from === "string" ? from : from?.[0] || "unknown";
-      await tasks.trigger("days-inn-handle-reply", {
-        from: fromStr,
-        subject: subject || "",
-        text: feedbackText || text || "",
-        contactId,
-      });
-      console.log(`Triggered contractor reply handler for: ${fromStr} (contact: ${contactId})`);
-      return NextResponse.json({ status: "contractor-reply-triggered" }, { status: 200 });
+      try {
+        await tasks.trigger("days-inn-handle-reply", {
+          from: fromStr,
+          subject: subject || "",
+          text: feedbackText || text || "",
+          contactId,
+        });
+        console.log(`Triggered contractor reply handler for: ${fromStr} (contact: ${contactId})`);
+        return NextResponse.json({ status: "contractor-reply-triggered" }, { status: 200 });
+      } catch (triggerErr) {
+        console.error("Trigger.dev task failed:", triggerErr);
+        // Fall through to try other handlers
+      }
     }
 
     reviewId = reviewId || extractReviewIdFromSubject(subject);
