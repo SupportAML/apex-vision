@@ -20,14 +20,49 @@ export async function POST(req: NextRequest) {
 
     // headers is an array of {name, value} objects in Resend's inbound format
     let reviewId: string | null = null;
+    let contactId: string | null = null;
+
     if (Array.isArray(headers)) {
-      const h = (headers as { name: string; value: string }[]).find(
+      const reviewHeader = (headers as { name: string; value: string }[]).find(
         (h) => h.name.toLowerCase() === "x-apex-review-id"
       );
-      reviewId = h?.value || null;
+      reviewId = reviewHeader?.value || null;
+
+      const contactHeader = (headers as { name: string; value: string }[]).find(
+        (h) => h.name.toLowerCase() === "x-apex-contact-id"
+      );
+      contactId = contactHeader?.value || null;
     } else {
       reviewId = headers?.["x-apex-review-id"] || headers?.["X-Apex-Review-Id"] || null;
+      contactId = headers?.["x-apex-contact-id"] || headers?.["X-Apex-Contact-Id"] || null;
     }
+
+    // Also detect contractor lead replies by subject pattern
+    if (!contactId) {
+      const subjectStr = (subject || "").toLowerCase();
+      if (
+        subjectStr.includes("crew lodging") ||
+        subjectStr.includes("days inn") ||
+        subjectStr.includes("crew rates") ||
+        subjectStr.includes("contractor")
+      ) {
+        contactId = "subject-match"; // Flag for contractor lead reply
+      }
+    }
+
+    // --- Route: Contractor lead reply ---
+    if (contactId) {
+      const fromStr = typeof from === "string" ? from : from?.[0] || "unknown";
+      await tasks.trigger("days-inn-handle-reply", {
+        from: fromStr,
+        subject: subject || "",
+        text: feedbackText || text || "",
+        contactId,
+      });
+      console.log(`Triggered contractor reply handler for: ${fromStr} (contact: ${contactId})`);
+      return NextResponse.json({ status: "contractor-reply-triggered" }, { status: 200 });
+    }
+
     reviewId = reviewId || extractReviewIdFromSubject(subject);
 
     // Extract just the new reply text — strip the quoted thread before processing.

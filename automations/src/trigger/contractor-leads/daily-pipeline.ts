@@ -8,6 +8,8 @@ import {
   saveContacts,
   addContact,
   unsubscribeContact,
+  findContact,
+  updateContactStatus,
 } from "./contacts-db.js";
 import { sendInitialOutreach, runFollowUpSequence } from "./sequence-runner.js";
 import type { Contact } from "./contacts-db.js";
@@ -180,5 +182,98 @@ export const unsubscribeTask = task({
       console.log(`Email not found in contacts: ${payload.email}`);
     }
     return { unsubscribed: result, email: payload.email };
+  },
+});
+
+/**
+ * Handle contractor reply -- triggered by inbound webhook when someone
+ * replies to an outreach email. Stops the follow-up sequence and
+ * forwards the reply to the hotel owners.
+ */
+export const handleReplyTask = task({
+  id: "days-inn-handle-reply",
+  run: async (payload: {
+    from: string;
+    subject: string;
+    text: string;
+    contactId: string;
+  }) => {
+    const db = loadContacts();
+    const resend = (await import("./config.js")).getResend();
+    const REVIEW_FROM_EMAIL =
+      process.env.REVIEW_FROM_EMAIL || "review@updates.apexmedlaw.com";
+    const DIGEST_RECIPIENTS = ["hkapuria@gmail.com", "ahkapuria@gmail.com"];
+
+    // Find the contact by ID or by email
+    let contact = db.contacts.find((c) => c.id === payload.contactId);
+    if (!contact) {
+      // Try matching by sender email
+      const senderEmail = payload.from.match(/<(.+?)>/)?.[1] || payload.from;
+      contact = db.contacts.find(
+        (c) => c.email.toLowerCase() === senderEmail.toLowerCase()
+      );
+    }
+
+    if (contact) {
+      // Stop the sequence -- mark as replied
+      updateContactStatus(db, contact.id, {
+        status: "replied",
+        nextFollowUp: undefined,
+        notes: `Replied ${new Date().toISOString().split("T")[0]}: ${payload.text.slice(0, 200)}`,
+      });
+      saveContacts(db);
+      console.log(`Contact ${contact.companyName} (${contact.email}) marked as replied`);
+    }
+
+    // Forward the reply to owners with context
+    const companyInfo = contact
+      ? `<strong>${contact.companyName}</strong> (${contact.email})<br/>
+         Project: ${contact.project}<br/>
+         Location: ${contact.location}<br/>
+         Score: ${contact.relevanceScore} | Source: ${contact.source}<br/>
+         Status was: ${contact.status} (now: replied)`
+      : `<strong>Unknown contact</strong> (${payload.from})`;
+
+    const html = `
+<div style="font-family:-apple-system,system-ui,sans-serif;max-width:600px;margin:0 auto;padding:20px;">
+  <div style="background:#059669;color:white;padding:16px;border-radius:8px;margin-bottom:16px;">
+    <h2 style="margin:0;font-size:18px;">Contractor Reply Received</h2>
+    <p style="margin:4px 0 0;opacity:0.9;font-size:13px;">${new Date().toISOString().split("T")[0]}</p>
+  </div>
+
+  <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:14px;margin-bottom:16px;font-size:13px;">
+    ${companyInfo}
+  </div>
+
+  <div style="margin-bottom:16px;">
+    <strong style="font-size:13px;color:#64748b;">From:</strong> ${payload.from}<br/>
+    <strong style="font-size:13px;color:#64748b;">Subject:</strong> ${payload.subject}
+  </div>
+
+  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;font-size:14px;line-height:1.6;white-space:pre-line;">
+${payload.text}
+  </div>
+
+  <div style="margin-top:16px;font-size:12px;color:#94a3b8;">
+    Follow-up sequence has been stopped for this contact. Reply directly to them at their email address.
+  </div>
+</div>`;
+
+    const result = await resend.emails.send({
+      from: REVIEW_FROM_EMAIL,
+      to: DIGEST_RECIPIENTS,
+      subject: `[REPLY] ${contact?.companyName || payload.from} responded to Days Inn outreach`,
+      html,
+    });
+
+    console.log(
+      `Reply forwarded to owners: ${result.data?.id || "failed"}`
+    );
+
+    return {
+      contactFound: !!contact,
+      companyName: contact?.companyName || payload.from,
+      forwarded: !result.error,
+    };
   },
 });

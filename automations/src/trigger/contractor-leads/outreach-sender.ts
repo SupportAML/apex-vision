@@ -1,4 +1,4 @@
-import { getResend, REVIEW_FROM_EMAIL } from "./config.js";
+import { getResend } from "./config.js";
 import type { Contact } from "./contacts-db.js";
 import * as crypto from "crypto";
 
@@ -11,6 +11,12 @@ const UNSUBSCRIBE_SECRET = process.env.UNSUBSCRIBE_SECRET || "days-inn-unsub-202
 
 // Dashboard URL for unsubscribe endpoint
 const DASHBOARD_URL = process.env.DASHBOARD_URL || "https://apex-vision.vercel.app";
+
+// Sender: friendly display name on the verified Resend domain
+// Replies come back to this address and hit the inbound webhook
+const OUTREACH_FROM =
+  process.env.OUTREACH_FROM_EMAIL ||
+  "Days Inn Cambridge <review@updates.apexmedlaw.com>";
 
 // --- Unsubscribe Token ---
 
@@ -141,7 +147,8 @@ export async function sendOutreachEmail(
   const unsubUrl = `${DASHBOARD_URL}/api/unsubscribe?token=${token}`;
 
   const result = await resend.emails.send({
-    from: REVIEW_FROM_EMAIL,
+    from: OUTREACH_FROM,
+    replyTo: OUTREACH_FROM,
     to: [contact.email],
     subject: emailContent.subject,
     html: emailContent.html,
