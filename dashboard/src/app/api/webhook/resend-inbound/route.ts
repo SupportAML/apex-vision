@@ -37,6 +37,17 @@ export async function POST(req: NextRequest) {
       contactId = headers?.["x-apex-contact-id"] || headers?.["X-Apex-Contact-Id"] || null;
     }
 
+    // Extract just the new reply text — strip the quoted thread before processing.
+    // Apple Mail sends HTML-only replies; the quoted original email is in a <blockquote>.
+    let feedbackText = text?.trim() || "";
+    if (!feedbackText) {
+      const htmlNoQuotes = (html || "").replace(/<blockquote[\s\S]*?<\/blockquote>/gi, "");
+      feedbackText = stripHtmlTags(htmlNoQuotes);
+    } else {
+      // Strip >-quoted lines from plain text replies
+      feedbackText = feedbackText.split("\n").filter((l: string) => !l.trimStart().startsWith(">")).join("\n").trim();
+    }
+
     // Also detect contractor lead replies by subject pattern
     if (!contactId) {
       const subjectStr = (subject || "").toLowerCase();
@@ -64,17 +75,6 @@ export async function POST(req: NextRequest) {
     }
 
     reviewId = reviewId || extractReviewIdFromSubject(subject);
-
-    // Extract just the new reply text — strip the quoted thread before processing.
-    // Apple Mail sends HTML-only replies; the quoted original email is in a <blockquote>.
-    let feedbackText = text?.trim() || "";
-    if (!feedbackText) {
-      const htmlNoQuotes = (html || "").replace(/<blockquote[\s\S]*?<\/blockquote>/gi, "");
-      feedbackText = stripHtmlTags(htmlNoQuotes);
-    } else {
-      // Strip >-quoted lines from plain text replies
-      feedbackText = feedbackText.split("\n").filter((l: string) => !l.trimStart().startsWith(">")).join("\n").trim();
-    }
 
     console.log("DEBUG", JSON.stringify({
       textLen: (text || "").length,
