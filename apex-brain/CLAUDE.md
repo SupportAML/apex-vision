@@ -67,12 +67,27 @@ See `skills/cli-anything/SKILL.md` for details and business use cases.
 - Dashboards over walls of text. Abhi is extremely visual.
 - When a change is low-risk and reversible, just do it and show what you did.
 
+## Marketing Suite (`/market`)
+Full AI marketing toolkit adapted from zubair-trabzada/ai-marketing-claude. 15 commands for auditing any website, generating copy, building email sequences, scanning competitors, and producing client-ready PDF reports. See `.claude/skills/market/SKILL.md` for the orchestrator.
+
+Key capabilities:
+- `/market audit <url>` — Full audit with 5 parallel agents, weighted scoring across 6 categories
+- `/market report-pdf` — Professional PDF report via `scripts/marketing/generate_pdf_report.py`
+- `/market proposal` — Client proposal with tiered pricing and follow-up sequences
+- `/market launch` — 8-week launch playbook with email sequences and social templates
+- Enhanced existing skills: social-media-content, email-outreach, competitor-analysis, seo-content, google-ads
+
+Supporting files:
+- Agents: `.agents/skills/marketing/` (content, conversion, competitive, technical, strategy)
+- Scripts: `scripts/marketing/` (PDF generator, page analyzer, competitor scanner, social calendar)
+- Templates: `apex-brain/templates/marketing/` (emails, proposals, content calendar, launch checklist)
+
 ## Skills to Build Backlog
 - LinkedIn/Instagram/Threads content creation and auto-posting for NLC
 - AI video generation for social media lead gen
 - Physician recruitment outreach (SEAK registry, LinkedIn)
 - CRM lead qualification and automated follow-up emails
-- Competitor analysis for legal consulting market
+- ~~Competitor analysis for legal consulting market~~ — DONE: competitor-analysis skill enhanced with SWOT, feature matrix, scanner script
 - Investment opportunity scouting for A2Z Equity
 - Invoice management (WaveApps integration or replacement) — DONE: accounting-connector skill built with Wave provider + Zoho/QBO abstraction. See skills/accounting-connector/SKILL.md
 - Scheduling and onboarding docs for Club Haus
