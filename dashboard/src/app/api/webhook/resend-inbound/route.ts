@@ -71,19 +71,55 @@ export async function POST(req: NextRequest) {
     // --- Route: Contractor lead reply ---
     if (contactId) {
       const fromStr = typeof from === "string" ? from : from?.[0] || "unknown";
+      const replyText = feedbackText || text || "";
+
+      // Forward reply directly to owners via Resend (don't depend on Trigger.dev)
+      try {
+        const { Resend } = await import("resend");
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const REVIEW_FROM = process.env.REVIEW_FROM_EMAIL || "review@updates.apexmedlaw.com";
+
+        const forwardHtml = `
+<div style="font-family:-apple-system,system-ui,sans-serif;max-width:600px;margin:0 auto;padding:20px;">
+  <div style="background:#059669;color:white;padding:16px;border-radius:8px;margin-bottom:16px;">
+    <h2 style="margin:0;font-size:18px;">Contractor Reply Received</h2>
+  </div>
+  <div style="margin-bottom:16px;">
+    <strong>From:</strong> ${fromStr}<br/>
+    <strong>Subject:</strong> ${subject || "(no subject)"}<br/>
+    <strong>Contact ID:</strong> ${contactId}
+  </div>
+  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;font-size:14px;line-height:1.6;white-space:pre-line;">${replyText}</div>
+  <div style="margin-top:16px;font-size:12px;color:#94a3b8;">
+    Reply directly to the contractor at their email address. Follow-up sequence will be stopped on next pipeline run.
+  </div>
+</div>`;
+
+        await resend.emails.send({
+          from: REVIEW_FROM,
+          to: ["hkapuria@gmail.com", "ahkapuria@gmail.com"],
+          subject: `[CONTRACTOR REPLY] ${fromStr} responded to Days Inn outreach`,
+          html: forwardHtml,
+        });
+
+        console.log(`Contractor reply forwarded from: ${fromStr}`);
+      } catch (emailErr) {
+        console.error("Failed to forward contractor reply:", emailErr);
+      }
+
+      // Also try to trigger the Trigger.dev task to update contacts DB
       try {
         await tasks.trigger("days-inn-handle-reply", {
           from: fromStr,
           subject: subject || "",
-          text: feedbackText || text || "",
+          text: replyText,
           contactId,
         });
-        console.log(`Triggered contractor reply handler for: ${fromStr} (contact: ${contactId})`);
-        return NextResponse.json({ status: "contractor-reply-triggered" }, { status: 200 });
-      } catch (triggerErr) {
-        console.error("Trigger.dev task failed:", triggerErr);
-        // Fall through to try other handlers
+      } catch {
+        // Trigger.dev task is optional -- email forwarding already handled above
       }
+
+      return NextResponse.json({ status: "contractor-reply-forwarded" }, { status: 200 });
     }
 
     reviewId = reviewId || extractReviewIdFromSubject(subject);
