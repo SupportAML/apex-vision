@@ -1,28 +1,7 @@
 {
   "version": 1,
-  "lastUpdated": "2026-03-18T03:08:26.171Z",
+  "lastUpdated": "2026-03-18T03:26:28.174Z",
   "contacts": [
-    {
-      "companyName": "Kapuria Construction LLC",
-      "email": "hkapuria@gmail.com",
-      "phone": "740-555-0199",
-      "contactName": "H. Kapuria, Project Manager",
-      "project": "I-77 Bridge Rehabilitation - Guernsey County",
-      "location": "Guernsey County, OH (I-77 corridor)",
-      "source": "odot",
-      "whyGoodFit": "I-77 bridge project is literally in Cambridge -- crew of 20+ needs rooms for 8 months, perfect for weekly and extended stay rates",
-      "relevanceScore": 95,
-      "draftEmail": {
-        "subject": "Crew lodging for I-77 Bridge project - Days Inn Cambridge",
-        "body": "Hi H. Kapuria - I saw Kapuria Construction is handling the I-77 bridge rehabilitation right here in Guernsey County. We're the closest hotel to the job site and we work with a lot of construction crews.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking). Group discount: $55/night when booking 5+ rooms. Extended stay 30+ days: call me directly for a custom rate.\n\nFree breakfast saves your crew per diem, we've got truck/trailer parking, laundry on-site, and microwave/fridge in every room. Happy to set up a block whenever you're ready.\n\nGM, Days Inn by Wyndham Cambridge\n740-432-5691"
-      },
-      "id": "c_1773803304030_3wqqtg",
-      "status": "emailed",
-      "sequenceStep": 1,
-      "dateAdded": "2026-03-18",
-      "lastEmailed": "2026-03-18",
-      "nextFollowUp": "2026-03-21"
-    },
     {
       "companyName": "EAP OHIO LLC",
       "email": "info@eapohio.com",
@@ -281,6 +260,27 @@
       "status": "new",
       "sequenceStep": 0,
       "dateAdded": "2026-03-18"
+    },
+    {
+      "companyName": "Kapuria Bridge & Highway LLC",
+      "email": "hkapuria@gmail.com",
+      "phone": "740-555-0199",
+      "contactName": "H. Kapuria, Project Manager",
+      "project": "I-77 Bridge Deck Replacement - Exit 178, Cambridge",
+      "location": "Guernsey County, OH (I-77 Exit 178)",
+      "source": "odot",
+      "whyGoodFit": "Bridge project is at our I-77 exit. Crew of 15-20 needs rooms for 6 months.",
+      "relevanceScore": 98,
+      "draftEmail": {
+        "subject": "Crew lodging for the I-77 bridge project - Days Inn Cambridge",
+        "body": "Hi H. Kapuria - saw Kapuria Bridge & Highway picked up the I-77 bridge deck replacement at Exit 178 in Cambridge. Your crew would have a 2-minute commute to the job site.\n\nSpecial weekly crew rate: $350/week (saves over $100 vs. nightly booking)\nGroup discount: $55/night when booking 5+ rooms\nExtended stay 30+ days: call me directly for a custom rate\n\nFree breakfast every morning, truck and trailer parking, laundry on-site, microwave and fridge in every room.\n\nHappy to hold a block of rooms - just reply to this email or call me anytime.\n\nGM, Days Inn by Wyndham Cambridge\n740-432-5691"
+      },
+      "id": "c_1773804387850_h0cwcl",
+      "status": "emailed",
+      "sequenceStep": 1,
+      "dateAdded": "2026-03-18",
+      "lastEmailed": "2026-03-18",
+      "nextFollowUp": "2026-03-21"
     }
   ]
 }
