@@ -75,8 +75,7 @@ export async function POST(req: NextRequest) {
 
       // Forward reply directly to owners via Resend (don't depend on Trigger.dev)
       try {
-        const { Resend } = await import("resend");
-        const resend = new Resend(process.env.RESEND_API_KEY);
+        const RESEND_API_KEY = process.env.RESEND_API_KEY;
         const REVIEW_FROM = process.env.REVIEW_FROM_EMAIL || "review@updates.apexmedlaw.com";
 
         const forwardHtml = `
@@ -95,11 +94,18 @@ export async function POST(req: NextRequest) {
   </div>
 </div>`;
 
-        await resend.emails.send({
-          from: REVIEW_FROM,
-          to: ["hkapuria@gmail.com", "ahkapuria@gmail.com"],
-          subject: `[CONTRACTOR REPLY] ${fromStr} responded to Days Inn outreach`,
-          html: forwardHtml,
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: REVIEW_FROM,
+            to: ["hkapuria@gmail.com", "ahkapuria@gmail.com"],
+            subject: `[CONTRACTOR REPLY] ${fromStr} responded to Days Inn outreach`,
+            html: forwardHtml,
+          }),
         });
 
         console.log(`Contractor reply forwarded from: ${fromStr}`);
