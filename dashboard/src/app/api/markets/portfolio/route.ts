@@ -3,6 +3,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getAccount, getPortfolioHistory } from "@/lib/markets/alpaca";
+import { savePortfolioSnapshot } from "@/lib/markets/firestore";
 
 export async function GET(req: NextRequest) {
   try {
@@ -13,6 +14,13 @@ export async function GET(req: NextRequest) {
       getAccount(),
       getPortfolioHistory(period),
     ]);
+
+    // Persist portfolio snapshot to Firestore for historical tracking
+    try {
+      await savePortfolioSnapshot(account);
+    } catch {
+      // Non-blocking
+    }
 
     return NextResponse.json({ account, history });
   } catch (error: any) {

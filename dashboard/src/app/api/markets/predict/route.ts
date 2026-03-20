@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStockBars, getCryptoBars } from "@/lib/markets/polygon";
 import { analyzeTechnicals } from "@/lib/markets/technical";
 import { generatePredictions } from "@/lib/markets/predictions";
+import { savePrediction } from "@/lib/markets/firestore";
 import { DEFAULT_STOCKS, DEFAULT_CRYPTO } from "@/lib/markets/types";
 
 export async function POST(req: NextRequest) {
@@ -56,6 +57,14 @@ export async function POST(req: NextRequest) {
     }
 
     const predictions = await generatePredictions(validAssets);
+
+    // Persist prediction to Firestore for history tracking
+    try {
+      await savePrediction(predictions);
+    } catch {
+      // Non-blocking — prediction still returned even if persistence fails
+    }
+
     return NextResponse.json(predictions);
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
