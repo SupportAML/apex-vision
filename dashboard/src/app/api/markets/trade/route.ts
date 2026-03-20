@@ -3,6 +3,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { submitOrder, cancelOrder, getOrders } from "@/lib/markets/alpaca";
+import { saveTrade } from "@/lib/markets/firestore";
 import type { TradeOrder } from "@/lib/markets/types";
 
 export async function POST(req: NextRequest) {
@@ -17,6 +18,14 @@ export async function POST(req: NextRequest) {
       }
 
       const result = await submitOrder(order);
+
+      // Persist trade to Firestore for history tracking
+      try {
+        await saveTrade(result);
+      } catch {
+        // Non-blocking — trade still executed even if persistence fails
+      }
+
       return NextResponse.json({ success: true, order: result });
     }
 

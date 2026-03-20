@@ -1,14 +1,38 @@
 // ── Notifications API ─────────────────────────────────────────────
 // GET/POST /api/markets/notifications
+// Backed by Firestore for persistent storage across deploys
 
 import { NextRequest, NextResponse } from "next/server";
+import {
+  saveNotification,
+  getUnreadNotifications,
+} from "@/lib/markets/firestore";
+import { db } from "@/lib/firebase";
+import {
+  collection,
+  doc,
+  updateDoc,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+  writeBatch,
+} from "firebase/firestore";
 import type { MarketNotification } from "@/lib/markets/types";
 
-// In-memory store (in production, use a database)
-let notifications: MarketNotification[] = [];
-
 export async function GET() {
-  return NextResponse.json({ notifications: notifications.slice(0, 50) });
+  try {
+    const q = query(
+      collection(db, "notifications"),
+      orderBy("createdAt", "desc"),
+      limit(50),
+    );
+    const snap = await getDocs(q);
+    const notifications = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    return NextResponse.json({ notifications });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -28,26 +52,32 @@ export async function POST(req: NextRequest) {
         read: false,
         createdAt: Date.now(),
       };
-      notifications.unshift(notification);
-      // Keep max 100 notifications
-      if (notifications.length > 100) notifications = notifications.slice(0, 100);
+      await saveNotification(notification);
       return NextResponse.json({ success: true, notification });
     }
 
     if (action === "markRead") {
       const { id } = body;
-      const notif = notifications.find((n) => n.id === id);
-      if (notif) notif.read = true;
+      await updateDoc(doc(db, "notifications", id), { read: true });
       return NextResponse.json({ success: true });
     }
 
     if (action === "markAllRead") {
-      notifications.forEach((n) => (n.read = true));
+      const unread = await getUnreadNotifications();
+      const batch = writeBatch(db);
+      for (const n of unread) {
+        batch.update(doc(db, "notifications", (n as any).id || n.id), { read: true });
+      }
+      await batch.commit();
       return NextResponse.json({ success: true });
     }
 
     if (action === "clear") {
-      notifications = [];
+      // Delete all notifications
+      const snap = await getDocs(collection(db, "notifications"));
+      const batch = writeBatch(db);
+      snap.docs.forEach((d) => batch.delete(d.ref));
+      await batch.commit();
       return NextResponse.json({ success: true });
     }
 
