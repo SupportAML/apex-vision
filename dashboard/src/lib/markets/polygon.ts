@@ -1,5 +1,6 @@
 // ── Polygon.io Market Data Client ─────────────────────────────────
-// Professional-grade real-time and historical market data
+// Uses free-tier endpoints: /prev (previous day close) and /range (historical bars)
+// Snapshot endpoints require a paid plan and are NOT used.
 
 import type { MarketQuote, OHLCV, CryptoQuote } from "./types";
 
@@ -26,45 +27,43 @@ async function polygonFetch<T>(path: string, params: Record<string, string> = {}
   return res.json();
 }
 
-// ── Stock Quotes ──────────────────────────────────────────────────
+// ── Stock Quotes (free-tier: previous day close) ─────────────────
+
+async function getStockPrev(symbol: string): Promise<any> {
+  const data = await polygonFetch<any>(`/v2/aggs/ticker/${symbol}/prev`, {
+    adjusted: "true",
+  });
+  return data.results?.[0] || null;
+}
 
 export async function getStockSnapshot(symbol: string): Promise<MarketQuote> {
-  const data = await polygonFetch<any>(`/v2/snapshot/locale/us/markets/stocks/tickers/${symbol}`);
-  const t = data.ticker;
+  const bar = await getStockPrev(symbol);
+  if (!bar) throw new Error(`No data for ${symbol}`);
+
   return {
-    symbol: t.ticker,
+    symbol,
     name: symbol,
-    price: t.day?.c || t.prevDay?.c || 0,
-    change: (t.todaysChange) || 0,
-    changePercent: (t.todaysChangePerc) || 0,
-    high: t.day?.h || 0,
-    low: t.day?.l || 0,
-    open: t.day?.o || 0,
-    prevClose: t.prevDay?.c || 0,
-    volume: t.day?.v || 0,
-    timestamp: t.updated ? t.updated / 1e6 : Date.now(),
+    price: bar.c || 0,
+    change: bar.c && bar.o ? bar.c - bar.o : 0,
+    changePercent: bar.c && bar.o ? ((bar.c - bar.o) / bar.o) * 100 : 0,
+    high: bar.h || 0,
+    low: bar.l || 0,
+    open: bar.o || 0,
+    prevClose: bar.o || 0,
+    volume: bar.v || 0,
+    timestamp: bar.t || Date.now(),
   };
 }
 
 export async function getMultipleStockSnapshots(symbols: string[]): Promise<MarketQuote[]> {
-  const tickers = symbols.join(",");
-  const data = await polygonFetch<any>(`/v2/snapshot/locale/us/markets/stocks/tickers`, {
-    tickers,
-  });
+  // Free tier doesn't have batch snapshot — fetch individually with concurrency
+  const results = await Promise.allSettled(
+    symbols.map((sym) => getStockSnapshot(sym))
+  );
 
-  return (data.tickers || []).map((t: any) => ({
-    symbol: t.ticker,
-    name: t.ticker,
-    price: t.day?.c || t.prevDay?.c || 0,
-    change: t.todaysChange || 0,
-    changePercent: t.todaysChangePerc || 0,
-    high: t.day?.h || 0,
-    low: t.day?.l || 0,
-    open: t.day?.o || 0,
-    prevClose: t.prevDay?.c || 0,
-    volume: t.day?.v || 0,
-    timestamp: t.updated ? t.updated / 1e6 : Date.now(),
-  }));
+  return results
+    .filter((r): r is PromiseFulfilledResult<MarketQuote> => r.status === "fulfilled")
+    .map((r) => r.value);
 }
 
 // ── Historical Data (OHLCV) ──────────────────────────────────────
@@ -94,22 +93,25 @@ export async function getStockBars(
 // ── Crypto ────────────────────────────────────────────────────────
 
 export async function getCryptoSnapshot(symbol: string): Promise<CryptoQuote> {
-  // Polygon uses X: prefix for crypto, e.g. X:BTCUSD
   const polygonSymbol = `X:${symbol.replace("/", "")}`;
-  const data = await polygonFetch<any>(`/v2/snapshot/locale/global/markets/crypto/tickers/${polygonSymbol}`);
-  const t = data.ticker;
+  const data = await polygonFetch<any>(`/v2/aggs/ticker/${polygonSymbol}/prev`, {
+    adjusted: "true",
+  });
+  const bar = data.results?.[0];
+  if (!bar) throw new Error(`No data for ${symbol}`);
+
   return {
     symbol,
     name: symbol,
-    price: t.day?.c || t.lastTrade?.p || 0,
-    change: t.todaysChange || 0,
-    changePercent: t.todaysChangePerc || 0,
-    high: t.day?.h || 0,
-    low: t.day?.l || 0,
-    open: t.day?.o || 0,
-    prevClose: t.prevDay?.c || 0,
-    volume: t.day?.v || 0,
-    timestamp: t.updated ? t.updated / 1e6 : Date.now(),
+    price: bar.c || 0,
+    change: bar.c && bar.o ? bar.c - bar.o : 0,
+    changePercent: bar.c && bar.o ? ((bar.c - bar.o) / bar.o) * 100 : 0,
+    high: bar.h || 0,
+    low: bar.l || 0,
+    open: bar.o || 0,
+    prevClose: bar.o || 0,
+    volume: bar.v || 0,
+    timestamp: bar.t || Date.now(),
   };
 }
 
